@@ -7,17 +7,14 @@
              xmlns:p="clr-namespace:sfx_100_streamdeck_sfb_extension.Properties"
              Unloaded="StreamdeckExtensionControlGUI_OnUnloaded"
              Loaded="StreamdeckExtensionControlGUI_OnLoaded"
-             x:Name="ModBusExtensionControlGuiElement"
+             x:Name="StreamdeckExtensionControlGuiElement"
              mc:Ignorable="d" Height="273.449" Width="1226.643" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-    <UserControl.Resources>
-        <local:BooleanAndConverter x:Key="BooleanAndConverter" />
-    </UserControl.Resources>
     <Grid VerticalAlignment="Top" Height="282" Width="Auto" Margin="0,0,0.5,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="streamdeckExtensionTitle" Content="Streamdeck Extension" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"><Hyperlink NavigateUri="https://github.com/ashupp/SFX-100-Simdeck" RequestNavigate="Hyperlink_OnRequestNavigate" ><Run Text="https://github.com/ashupp/SFX-100-Modbus"/></Hyperlink></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"><Hyperlink NavigateUri="https://github.com/ashupp/SFX-100-Streamdeck" RequestNavigate="Hyperlink_OnRequestNavigate" ><Run Text="https://github.com/ashupp/SFX-100-Streamdeck"/></Hyperlink></TextBlock>
         <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,86,598,0" Height="160"/>
 
     </Grid>

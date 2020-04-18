@@ -1,0 +1,53 @@
+{
+  "Actions": [
+    {
+      "Icon": "Images/icon",
+      "Name": "Start Motion",
+      "States": [
+        {
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Start Motion",
+      "UUID": "sfx-100-streamdeck-plugin.startmotion",
+      "PropertyInspectorPath": "PropertyInspector/StartMotion.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Stop Motion",
+      "States": [
+        {
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Start Motion",
+      "UUID": "sfx-100-streamdeck-plugin.stopmotion",
+      "PropertyInspectorPath": "PropertyInspector/StopMotion.html"
+    }
+  ],
+  "Author": "ashupp / ashnet GmbH",
+  "Name": "sfx-100-streamdeck-plugin",
+  "Description": "Plugin to control Simfeedback via Streamdeck",
+  "Icon": "Images/pluginIcon",
+  "URL": "http://ashnet.de",
+  "Version": "0.0.1.0",
+  "CodePath": "sfx-100-streamdeck-plugin",
+  "Category": "SFX-100 Simfeedback",
+  "CategoryIcon": "Images/categoryIcon",
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "4.3"
+  }
+}

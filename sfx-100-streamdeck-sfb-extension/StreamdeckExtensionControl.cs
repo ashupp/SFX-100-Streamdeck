@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimFeedback.extension;
 
@@ -19,11 +12,12 @@ namespace sfx_100_streamdeck_sfb_extension
         private SimFeedbackExtensionFacade _simFeedbackFacade;
 
 
-        public StreamdeckExtensionControl(StreamdeckExtension ext, SimFeedbackExtensionFacade facade)
+        public StreamdeckExtensionControl(StreamdeckExtension ext, SimFeedbackExtensionFacade simFeedbackFacade)
         {
             _streamdeckExtension = ext;
-            _simFeedbackFacade = facade;
+            _simFeedbackFacade = simFeedbackFacade;
             InitializeComponent();
+            _streamdeckExtensionControlGui1.StreamdeckExtensionControlGuiElement.SimFeedbackFacade = simFeedbackFacade;
         }
 
 

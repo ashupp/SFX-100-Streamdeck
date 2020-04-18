@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO.Pipes;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Navigation;
 using System.Windows.Threading;
-using System.Xml;
-using System.Xml.Serialization;
+using NPCommunication;
 using sfx_100_streamdeck_sfb_extension.Properties;
-using MessageBox = System.Windows.MessageBox;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -30,7 +20,6 @@ namespace sfx_100_streamdeck_sfb_extension
         public StreamdeckExtensionControlGui()
         {
             InitializeComponent();
-
             streamdeckExtensionTitle.Content = streamdeckExtensionTitle.Content + " - " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
             DataContext = this;
@@ -41,26 +30,36 @@ namespace sfx_100_streamdeck_sfb_extension
 
         #region Members
 
+        private NamedPipeServerStream _pipeServer;
+        public SimFeedback.extension.SimFeedbackExtensionFacade SimFeedbackFacade;
+        
         #endregion
 
         #region Private methods
 
-        /// <summary>
-        /// Tries to connects to ModBus
-        /// </summary>
-        private void Connect()
+        private void StartServer()
         {
-            Log("Connecting...");
-           
+            NPServer server = new NPServer("sfx100streamdeck", "sfx100streamdeck");
+            server.UpdateCommand("Start", argruments =>
+            {
+                Log("Received Command: Start");
+                if (SimFeedbackFacade != null) SimFeedbackFacade.Start();
+                return "Started";
+            });
+            server.UpdateCommand("Stop", argruments =>
+            {
+                Log("Received Command: Stop");
+                if (SimFeedbackFacade != null) SimFeedbackFacade.Stop();
+                return "Stopped";
+            });
+            server.Start();
         }
 
 
-        /// <summary>
-        /// Disconnects from ModBus
-        /// </summary>
-        private void Disconnect()
+        private void ShutdownServer()
         {
-            Log("disconnect");
+            _pipeServer.Disconnect();
+            _pipeServer.Dispose();
         }
 
 
@@ -79,7 +78,7 @@ namespace sfx_100_streamdeck_sfb_extension
                 DispatcherPriority.Normal,  
                 new Action(() =>
                 {
-                    /*
+                    
                     if (debugBox.Items.Count >= 250)
                     {
                         debugBox.Items.RemoveAt(0);
@@ -87,7 +86,7 @@ namespace sfx_100_streamdeck_sfb_extension
 
                     debugBox.Items.Add(DateTime.Now + ": " + logEntry);
                     debugBox.SelectedIndex = debugBox.Items.Count - 1;
-                    debugBox.ScrollIntoView(debugBox.SelectedItem);*/
+                    debugBox.ScrollIntoView(debugBox.SelectedItem);
                 }));
         }
 
@@ -105,36 +104,15 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             try
             {
-                Log("Try to connect automatically");
-                Connect();
+                Log("Waiting for commands");
+                StartServer();
             }
             catch (Exception ex)
             {
-                Log("Warning: Could not connect " + ex.Message);
+                Log("Warning: Could not start server " + ex.Message);
             }
         }
 
-
-
-        /// <summary>
-        /// Eventhandler for click on connect
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnConnect(object sender, RoutedEventArgs e)
-        {
-            Connect();
-        }
-
-        /// <summary>
-        /// Eventhandler for click on disconnect
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnDisconnect(object sender, RoutedEventArgs e)
-        {
-            Disconnect();
-        }
 
 
         /// <summary>
@@ -144,7 +122,8 @@ namespace sfx_100_streamdeck_sfb_extension
         /// <param name="e"></param>
         private void StreamdeckExtensionControlGUI_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Disconnect();
+            Log("Shut down Server");
+            ShutdownServer();
             Settings.Default.Save();
         }
 
