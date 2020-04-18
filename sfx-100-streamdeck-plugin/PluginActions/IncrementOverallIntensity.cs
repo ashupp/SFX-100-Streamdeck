@@ -1,17 +1,17 @@
-﻿using BarRaider.SdTools;
+﻿using System;
+using System.IO;
+using System.IO.Pipes;
+using System.Threading.Tasks;
+using BarRaider.SdTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NPCommunication;
 
-namespace sfx_100_streamdeck_plugin
+
+namespace sfx_100_streamdeck_plugin.PluginActions
 {
-    [PluginActionId("sfx-100-streamdeck-plugin.startmotion")]
-    public class PluginAction : PluginBase
+    [PluginActionId("sfx-100-streamdeck-plugin.incrementoverallintensity")]
+    public class IncrementOverallIntensity : PluginBase
     {
         private class PluginSettings
         {
@@ -36,15 +36,15 @@ namespace sfx_100_streamdeck_plugin
         private PluginSettings settings;
 
         #endregion
-        public PluginAction(SDConnection connection, InitialPayload payload) : base(connection, payload)
+        public IncrementOverallIntensity(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
-                this.settings = PluginSettings.CreateDefaultSettings();
+                settings = PluginSettings.CreateDefaultSettings();
             }
             else
             {
-                this.settings = payload.Settings.ToObject<PluginSettings>();
+                settings = payload.Settings.ToObject<PluginSettings>();
             }
         }
 
@@ -58,7 +58,11 @@ namespace sfx_100_streamdeck_plugin
             Logger.Instance.LogMessage(TracingLevel.INFO, "Key Pressed");
         }
 
-        public override void KeyReleased(KeyPayload payload) { }
+        public override void KeyReleased(KeyPayload payload)
+        {
+            var client = new NPClient("sfx100streamdeck", "sfx100streamdeck");
+            client.Get("IncrementOverallIntensity");
+        }
 
         public override void OnTick() { }
 

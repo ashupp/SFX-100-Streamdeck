@@ -5,6 +5,7 @@
       "Name": "Start Motion",
       "States": [
         {
+          "Title": "Start",
           "Image": "Images/pluginAction",
           "TitleAlignment": "middle",
           "FontSize": "12"
@@ -13,13 +14,14 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Start Motion",
       "UUID": "sfx-100-streamdeck-plugin.startmotion",
-      "PropertyInspectorPath": "PropertyInspector/StartMotion.html"
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
     },
     {
       "Icon": "Images/icon",
       "Name": "Stop Motion",
       "States": [
         {
+          "Title": "Stop",
           "Image": "Images/pluginAction",
           "TitleAlignment": "middle",
           "FontSize": "12"
@@ -28,17 +30,116 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Start Motion",
       "UUID": "sfx-100-streamdeck-plugin.stopmotion",
-      "PropertyInspectorPath": "PropertyInspector/StopMotion.html"
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Start/Stop Motion Toggle",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "Stopped",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        },
+        {
+          "Name": "On",
+          "Title": "Started",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Start Motion",
+      "UUID": "sfx-100-streamdeck-plugin.startstopmotiontoggle",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Disable All Effects",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "Disable",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable All Effects",
+      "UUID": "sfx-100-streamdeck-plugin.disablealleffects",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Enable All Effects",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "Enable",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable All Effects",
+      "UUID": "sfx-100-streamdeck-plugin.enablealleffects",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Increment Overall Intensity",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "Intensity+",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment overall intensity",
+      "UUID": "sfx-100-streamdeck-plugin.incrementoverallintensity",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Decrement Overall Intensity",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "Intensity-",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment overall intensity",
+      "UUID": "sfx-100-streamdeck-plugin.decrementoverallintensity",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
     }
+
+
+
+
   ],
   "Author": "ashupp / ashnet GmbH",
   "Name": "sfx-100-streamdeck-plugin",
-  "Description": "Plugin to control Simfeedback via Streamdeck",
+  "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.0",
+  "Version": "0.0.1.1",
   "CodePath": "sfx-100-streamdeck-plugin",
-  "Category": "SFX-100 Simfeedback",
+  "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",
   "OS": [
     {

@@ -9,8 +9,8 @@ namespace sfx_100_streamdeck_sfb_extension
 
         public StreamdeckExtension()
         {
-            Name = "Streamdeck Extension";
-            Info = "Control you SFX-100 with your Streamdeck";
+            Name = "Stream Deck Extension";
+            Info = "Control your SFX-100 with your Stream Deck";
             Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             Author = "ashupp";
             NeedsOwnTab = false;
@@ -32,7 +32,7 @@ namespace sfx_100_streamdeck_sfb_extension
         public override void Start()
         {
             if (IsRunning) return;
-            SimFeedbackFacade.Log("Starting Streamdeck Extension");
+            SimFeedbackFacade.Log("Starting Stream Deck Extension");
             _extCtrl.Start();
             IsRunning = true;
         }
@@ -40,7 +40,7 @@ namespace sfx_100_streamdeck_sfb_extension
         public override void Stop()
         {
             if (!IsRunning) return;
-            Log("Stopping Streamdeck Extension");
+            Log("Stopping Stream Deck Extension");
             _extCtrl.Stop();
             IsRunning = false;
         }

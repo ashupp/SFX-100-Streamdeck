@@ -43,16 +43,74 @@ namespace sfx_100_streamdeck_sfb_extension
             server.UpdateCommand("Start", argruments =>
             {
                 Log("Received Command: Start");
-                if (SimFeedbackFacade != null) SimFeedbackFacade.Start();
-                return "Started";
+                if (SimFeedbackFacade != null)
+                {
+                    SimFeedbackFacade.Start();
+                    return "ok";
+                }
+                return "failed";
+                ;
             });
             server.UpdateCommand("Stop", argruments =>
             {
                 Log("Received Command: Stop");
-                if (SimFeedbackFacade != null) SimFeedbackFacade.Stop();
-                return "Stopped";
+                if (SimFeedbackFacade != null)
+                {
+                    SimFeedbackFacade.Stop();
+                    return "ok";
+                }
+                return "failed";
             });
             server.Start();
+
+
+            server.UpdateCommand("DisableAllEffects", argruments =>
+            {
+                Log("Received Command: DisableAllEffects");
+                if (SimFeedbackFacade != null)
+                {
+                    SimFeedbackFacade.DisableAllEffects();
+                    return "ok";
+                }
+                return "failed";
+            });
+
+
+            server.UpdateCommand("EnableAllEffects", argruments =>
+            {
+                Log("Received Command: EnableAllEffects");
+                if (SimFeedbackFacade != null)
+                {
+                    SimFeedbackFacade.EnableAllEffects();
+                    return "ok";
+                }
+                return "failed";
+            });
+
+
+            server.UpdateCommand("IncrementOverallIntensity", argruments =>
+            {
+                Log("Received Command: IncrementOverallIntensity");
+                if (SimFeedbackFacade != null)
+                {
+                    SimFeedbackFacade.IncrementOverallIntensity();
+                    return "ok";
+                }
+                return "failed";
+            });
+
+            server.UpdateCommand("DecrementOverallIntensity", argruments =>
+            {
+                Log("Received Command: DecrementOverallIntensity");
+                if (SimFeedbackFacade != null)
+                {
+                    SimFeedbackFacade.DecrementOverallIntensity();
+                    return "ok";
+                }
+                return "failed";
+            });
+
+
         }
 
 
