@@ -3,6 +3,8 @@ Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-R
 
 **Download and install from release tab**  
 
+![In action](doc/screenshot.JPG?raw=true|width=200)
+
 ## Requirements
 
 - Stream Deck for Windows  
