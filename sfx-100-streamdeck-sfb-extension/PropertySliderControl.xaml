@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="sfx_100_streamdeck_sfb_extension.PropertySliderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:sfx_100_streamdeck_sfb_extension"
+             mc:Ignorable="d" Height="98.942" Width="501.101">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="491">
+        <Label x:Name="labelName" Content="{Binding PName}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Height="28" Width="471" FontWeight="Bold"/>
+        <TextBox x:Name="textBoxValue" VerticalContentAlignment="Center" Text="{Binding Value, ElementName=propertySlider, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="43" Margin="266,65,0,0" RenderTransformOrigin="0.387,0.517" />
+        <Slider x:Name="propertySlider"  Value="{Binding CurrentValue}" Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" TickFrequency="100" HorizontalAlignment="Left" VerticalAlignment="Top" Width="256" Margin="10,68,0,0"/>
+        <Button x:Name="btnSetValue" Content="Transfer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Height="21" Margin="314,65,0,0" Click="btnSetValue_Click"/>
+        <Button x:Name="btnResetDefault" Content="Reset to default" VerticalAlignment="Top" Height="21" Margin="378,65,10,0" Click="btnResetDefault_Click"/>
+        <Label x:Name="labelDescription" Content="{Binding Description}" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Width="471" Height="27"/>
+
+    </Grid>
+</UserControl>
