@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO.Pipes;
 using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Threading;
-using NPCommunication;
 using sfx_100_streamdeck_sfb_extension.Properties;
+using System.ServiceModel;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -21,16 +19,14 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             InitializeComponent();
             streamdeckExtensionTitle.Content = streamdeckExtensionTitle.Content + " - " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-
             DataContext = this;
-            Log("startup Extension GUI");
         }
 
         #endregion
 
         #region Members
 
-        private NamedPipeServerStream _pipeServer;
+        private ServiceHost _serviceHost;
         public SimFeedback.extension.SimFeedbackExtensionFacade SimFeedbackFacade;
         
         #endregion
@@ -39,115 +35,26 @@ namespace sfx_100_streamdeck_sfb_extension
 
         private void StartServer()
         {
-            NPServer server = new NPServer("sfx100streamdeck", "sfx100streamdeck");
-            server.UpdateCommand("Start", argruments =>
-            {
-                Log("Received Command: Start");
-                if (SimFeedbackFacade != null)
-                {
-                    SimFeedbackFacade.Start();
-                    return "ok";
-                }
-                return "failed";
-                ;
-            });
-            server.UpdateCommand("Stop", argruments =>
-            {
-                Log("Received Command: Stop");
-                if (SimFeedbackFacade != null)
-                {
-                    SimFeedbackFacade.Stop();
-                    return "ok";
-                }
-                return "failed";
-            });
-            server.Start();
-
-
-            server.UpdateCommand("DisableAllEffects", argruments =>
-            {
-                Log("Received Command: DisableAllEffects");
-                if (SimFeedbackFacade != null)
-                {
-                    SimFeedbackFacade.DisableAllEffects();
-                    return "ok";
-                }
-                return "failed";
-            });
-
-
-            server.UpdateCommand("EnableAllEffects", argruments =>
-            {
-                Log("Received Command: EnableAllEffects");
-                if (SimFeedbackFacade != null)
-                {
-                    SimFeedbackFacade.EnableAllEffects();
-                    return "ok";
-                }
-                return "failed";
-            });
-
-
-            server.UpdateCommand("IncrementOverallIntensity", argruments =>
-            {
-                Log("Received Command: IncrementOverallIntensity");
-                if (SimFeedbackFacade != null)
-                {
-                    SimFeedbackFacade.IncrementOverallIntensity();
-                    return "ok";
-                }
-                return "failed";
-            });
-
-            server.UpdateCommand("DecrementOverallIntensity", argruments =>
-            {
-                Log("Received Command: DecrementOverallIntensity");
-                if (SimFeedbackFacade != null)
-                {
-                    SimFeedbackFacade.DecrementOverallIntensity();
-                    return "ok";
-                }
-                return "failed";
-            });
-
-
+            string address = "net.pipe://localhost/ashnet/StreamDeckExtension";
+            _serviceHost = new ServiceHost(typeof(PipeServer));
+            NetNamedPipeBinding binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+            _serviceHost.AddServiceEndpoint(typeof(PipeContract), binding, address);
+            _serviceHost.Open();
+            GuiLoggerProvider.Instance.Log("Waiting for commands");
         }
 
 
         private void ShutdownServer()
         {
-            _pipeServer.Disconnect();
-            _pipeServer.Dispose();
+            _serviceHost.Close();
+            GuiLoggerProvider.Instance.Log("Shutdown Server");
         }
 
 
         #endregion
 
         #region Private helpers
-
-
-        /// <summary>
-        /// Simple logging to window. Holds only limited entries to prevent scrolling
-        /// </summary>
-        /// <param name="logEntry">Object to log</param>
-        private void Log(object logEntry)
-        {
-          Dispatcher?.BeginInvoke(
-                DispatcherPriority.Normal,  
-                new Action(() =>
-                {
-                    
-                    if (debugBox.Items.Count >= 250)
-                    {
-                        debugBox.Items.RemoveAt(0);
-                    }
-
-                    debugBox.Items.Add(DateTime.Now + ": " + logEntry);
-                    debugBox.SelectedIndex = debugBox.Items.Count - 1;
-                    debugBox.ScrollIntoView(debugBox.SelectedItem);
-                }));
-        }
-
+        
 
         #endregion
 
@@ -162,12 +69,12 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             try
             {
-                Log("Waiting for commands");
+                GuiLoggerProvider.Instance.Log("Startup Extension GUI");
                 StartServer();
             }
             catch (Exception ex)
             {
-                Log("Warning: Could not start server " + ex.Message);
+                GuiLoggerProvider.Instance.Log("Warning: Could not start server " + ex.Message);
             }
         }
 
@@ -180,7 +87,7 @@ namespace sfx_100_streamdeck_sfb_extension
         /// <param name="e"></param>
         private void StreamdeckExtensionControlGUI_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Log("Shut down Server");
+            GuiLoggerProvider.Instance.Log("Shutdown Extension GUI");
             ShutdownServer();
             Settings.Default.Save();
         }

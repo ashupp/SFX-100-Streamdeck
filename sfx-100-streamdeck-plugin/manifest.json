@@ -108,7 +108,7 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Increment overall intensity",
       "UUID": "sfx-100-streamdeck-plugin.incrementoverallintensity",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "PropertyInspectorPath": "PropertyInspector/IncrementOverallIntensity.html"
     },
     {
       "Icon": "Images/icon",
@@ -125,7 +125,7 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Increment overall intensity",
       "UUID": "sfx-100-streamdeck-plugin.decrementoverallintensity",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "PropertyInspectorPath": "PropertyInspector/DecrementOverallIntensity.html"
     }
 
 
@@ -137,7 +137,7 @@
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.1",
+  "Version": "0.0.1.2",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

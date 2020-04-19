@@ -1,11 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.IO.Pipes;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NPCommunication;
 
 
 namespace sfx_100_streamdeck_plugin.PluginActions
@@ -18,17 +15,12 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             public static PluginSettings CreateDefaultSettings()
             {
                 PluginSettings instance = new PluginSettings();
-                instance.OutputFileName = String.Empty;
-                instance.InputString = String.Empty;
+                instance.Steps = "1";
                 return instance;
             }
 
-            [FilenameProperty]
-            [JsonProperty(PropertyName = "outputFileName")]
-            public string OutputFileName { get; set; }
-
-            [JsonProperty(PropertyName = "inputString")]
-            public string InputString { get; set; }
+            [JsonProperty(PropertyName = "Steps")]
+            public string Steps { get; set; }
         }
 
         #region Private Members
@@ -60,8 +52,10 @@ namespace sfx_100_streamdeck_plugin.PluginActions
 
         public override void KeyReleased(KeyPayload payload)
         {
-            var client = new NPClient("sfx100streamdeck", "sfx100streamdeck");
-            client.Get("IncrementOverallIntensity");
+            if (PipeServerConnection.Instance.Channel.CheckConnection())
+            {
+                PipeServerConnection.Instance.Channel.IncrementOverallIntensity(Convert.ToInt32(settings.Steps));
+            }
         }
 
         public override void OnTick() { }

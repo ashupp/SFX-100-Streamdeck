@@ -1,5 +1,4 @@
 ﻿using BarRaider.SdTools;
-using NPCommunication;
 
 
 namespace sfx_100_streamdeck_plugin.PluginActions
@@ -15,8 +14,10 @@ namespace sfx_100_streamdeck_plugin.PluginActions
 
         public override void KeyReleased(KeyPayload payload)
         {
-            var client = new NPClient("sfx100streamdeck", "sfx100streamdeck");
-            client.Get("DisableAllEffects");
+            if (PipeServerConnection.Instance.Channel.CheckConnection())
+            {
+                PipeServerConnection.Instance.Channel.EnableAllEffects();
+            }
         }
 
         public override void OnTick() { }

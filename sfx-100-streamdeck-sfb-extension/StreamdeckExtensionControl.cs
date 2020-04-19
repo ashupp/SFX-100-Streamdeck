@@ -16,8 +16,11 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             _streamdeckExtension = ext;
             _simFeedbackFacade = simFeedbackFacade;
+            SimFeedbackFacadeProvider.Instance.SimFeedbackFacade = simFeedbackFacade;
+            
             InitializeComponent();
-            _streamdeckExtensionControlGui1.StreamdeckExtensionControlGuiElement.SimFeedbackFacade = simFeedbackFacade;
+
+            GuiLoggerProvider.Instance.LogBox =  _streamdeckExtensionControlGui1.debugBox;
         }
 
 
