@@ -16,7 +16,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
         {
             if (PipeServerConnection.Instance.Channel.CheckConnection())
             {
-                PipeServerConnection.Instance.Channel.EnableAllEffects();
+                PipeServerConnection.Instance.Channel.DisableAllEffects();
             }
         }
 
