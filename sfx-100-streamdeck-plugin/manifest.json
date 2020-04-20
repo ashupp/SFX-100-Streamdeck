@@ -157,14 +157,66 @@
       "Tooltip": "Is running?",
       "UUID": "sfx-100-streamdeck-plugin.isrunning",
       "PropertyInspectorPath": "PropertyInspector/IsRunning.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Start Profile",
+      "States": [
+        {
+          "Name": "Start Profile",
+          "Title": "",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Start Profile",
+      "UUID": "sfx-100-streamdeck-plugin.startprofile",
+      "PropertyInspectorPath": "PropertyInspector/StartProfile.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Exit SimFeedback",
+      "States": [
+        {
+          "Name": "Exit SimFeedback",
+          "Title": "Exit SFB",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Exit SimFeedback",
+      "UUID": "sfx-100-streamdeck-plugin.exitsimfeedback",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Start SimFeedback",
+      "States": [
+        {
+          "Name": "Start SimFeedback",
+          "Title": "Start SFB",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Start SimFeedback",
+      "UUID": "sfx-100-streamdeck-plugin.startsimfeedback",
+      "PropertyInspectorPath": "PropertyInspector/Start.html"
     }
+
   ],
   "Author": "ashupp / ashnet GmbH",
   "Name": "sfx-100-streamdeck-plugin",
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.4",
+  "Version": "0.0.1.5",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

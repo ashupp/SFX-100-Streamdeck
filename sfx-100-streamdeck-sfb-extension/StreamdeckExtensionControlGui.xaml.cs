@@ -27,37 +27,11 @@ namespace sfx_100_streamdeck_sfb_extension
 
         #region Members
 
-        private ServiceHost _serviceHost;
+
         public SimFeedback.extension.SimFeedbackExtensionFacade SimFeedbackFacade;
         
         #endregion
 
-        #region Private methods
-
-        private void StartServer()
-        {
-            string address = "net.pipe://localhost/ashnet/StreamDeckExtension";
-            _serviceHost = new ServiceHost(typeof(SfxStreamDeckPipeServer));
-            NetNamedPipeBinding binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
-            _serviceHost.AddServiceEndpoint(typeof(ISfxStreamDeckPipeContract), binding, address);
-            _serviceHost.Open();
-            GuiLoggerProvider.Instance.Log("Waiting for commands");
-        }
-
-
-        private void ShutdownServer()
-        {
-            _serviceHost.Close();
-            GuiLoggerProvider.Instance.Log("Shutdown Server");
-        }
-
-
-        #endregion
-
-        #region Private helpers
-        
-
-        #endregion
 
         #region Eventhandlers
 
@@ -71,7 +45,6 @@ namespace sfx_100_streamdeck_sfb_extension
             try
             {
                 GuiLoggerProvider.Instance.Log("Startup Extension GUI");
-                StartServer();
             }
             catch (Exception ex)
             {
@@ -89,7 +62,6 @@ namespace sfx_100_streamdeck_sfb_extension
         private void StreamdeckExtensionControlGUI_OnUnloaded(object sender, RoutedEventArgs e)
         {
             GuiLoggerProvider.Instance.Log("Shutdown Extension GUI");
-            ShutdownServer();
             Settings.Default.Save();
         }
 

@@ -74,8 +74,11 @@
     <Compile Include="PluginActions\DisableAllEffects.cs" />
     <Compile Include="PluginActions\DecrementOverallIntensity.cs" />
     <Compile Include="PluginActions\IncrementOverallIntensity.cs" />
+    <Compile Include="PluginActions\StartSimFeedback.cs" />
+    <Compile Include="PluginActions\StartProfile.cs" />
     <Compile Include="PluginActions\StartMotion.cs" />
     <Compile Include="PluginActions\StartStopMotionToggle.cs" />
+    <Compile Include="PluginActions\ExitSimFeedback.cs" />
     <Compile Include="PluginActions\StopMotion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +131,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\DecrementOverallIntensity.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\Start.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\StartProfile.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\IncrementOverallIntensity.html">

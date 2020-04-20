@@ -21,10 +21,10 @@ namespace sfx_100_streamdeck_plugin
             string address = "net.pipe://localhost/ashnet/StreamDeckExtension";
             _binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None)
             {
-                CloseTimeout = TimeSpan.FromSeconds(3),
-                OpenTimeout = TimeSpan.FromSeconds(3),
-                ReceiveTimeout = TimeSpan.FromSeconds(3),
-                SendTimeout = TimeSpan.FromSeconds(3)
+                CloseTimeout = TimeSpan.FromSeconds(5),
+                OpenTimeout = TimeSpan.FromSeconds(5),
+                ReceiveTimeout = TimeSpan.FromSeconds(5),
+                SendTimeout = TimeSpan.FromSeconds(5)
             };
 
             _ep = new EndpointAddress(address);

@@ -1,11 +1,14 @@
-﻿using SimFeedback.extension;
+﻿using System.ServiceModel;
+using SimFeedback.extension;
 using System.Windows.Forms;
+using sfx_100_streamdeck_pipecontract;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
     public class StreamdeckExtension : AbstractSimFeedbackExtension
     {
         private StreamdeckExtensionControl _extCtrl;
+        private ServiceHost _serviceHost;
 
         public StreamdeckExtension()
         {
@@ -29,10 +32,30 @@ namespace sfx_100_streamdeck_sfb_extension
             IsRunning = status;
         }
 
+        private void StartServer()
+        {
+            string address = "net.pipe://localhost/ashnet/StreamDeckExtension";
+            _serviceHost = new ServiceHost(typeof(SfxStreamDeckPipeServer));
+            NetNamedPipeBinding binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+            _serviceHost.AddServiceEndpoint(typeof(ISfxStreamDeckPipeContract), binding, address);
+            _serviceHost.Open();
+            GuiLoggerProvider.Instance.Log("Waiting for commands");
+        }
+
+
+
+        private void ShutdownServer()
+        {
+            _serviceHost.Close();
+            GuiLoggerProvider.Instance.Log("Shutdown Server");
+        }
+
         public override void Start()
         {
             if (IsRunning) return;
             SimFeedbackFacade.Log("Starting Stream Deck Extension");
+
+            StartServer();
             _extCtrl.Start();
             IsRunning = true;
         }
@@ -41,6 +64,7 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             if (!IsRunning) return;
             Log("Stopping Stream Deck Extension");
+            ShutdownServer();
             _extCtrl.Stop();
             IsRunning = false;
         }
