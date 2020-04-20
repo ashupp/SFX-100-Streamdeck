@@ -18,6 +18,14 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 - Install the Streamdeck extension by double-click
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
 
+## Known issues
+- "Is telemetry provider connected?" is set to true as soon as any telemetry provider is connected but it will never be false again. Even if the telemetry provider changes or is disconnected. This seems to be a problem of the SimFeedback API.
+
+## Ideas / Future implementation
+- Change / activate Profile with click on button
+- Display of current intensity value on button face (thx @Flag Ghost)
+
+
 ## Third party Libraries
 **This tool makes use of the following great projects:**
 
