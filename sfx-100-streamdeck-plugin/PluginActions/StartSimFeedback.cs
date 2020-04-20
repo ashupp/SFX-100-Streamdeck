@@ -7,6 +7,7 @@ using BarRaider.SdTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ServiceModel;
+using System.Threading;
 using System.Xml.Linq;
 
 
@@ -108,7 +109,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             {
                 try
                 {
-                    // Wait for Pipe
+                    // Wait for Pipe - no logging here 
                     try
                     {
                         PipeServerConnection.Instance.RestartChannel();
@@ -120,22 +121,17 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                         }
                     }
                     catch (EndpointNotFoundException endpointNotFoundException)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: Endpoint not found - Is SimFeedback available and is the Plugin enabled? " + endpointNotFoundException.Message);
-                    }
+                    { }
                     catch (CommunicationObjectFaultedException communicationObjectFaultedException)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: communicationObjectFaultedException: " + communicationObjectFaultedException.Message);
-                    }
+                    { }
                     catch (Exception ex)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error during Key processing: " + ex.Message);
-                    }
+                    { }
                 }
                 catch
                 {
                     Logger.Instance.LogMessage(TracingLevel.ERROR, "In loop, trying to Start motion");
                 }
+                Thread.Sleep(500);
             }
         }
 

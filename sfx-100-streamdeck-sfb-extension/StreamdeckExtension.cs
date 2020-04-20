@@ -46,6 +46,7 @@ namespace sfx_100_streamdeck_sfb_extension
 
         private void ShutdownServer()
         {
+            _serviceHost.Abort();
             _serviceHost.Close();
             GuiLoggerProvider.Instance.Log("Shutdown Server");
         }
