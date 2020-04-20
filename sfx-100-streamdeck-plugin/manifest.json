@@ -56,8 +56,6 @@
       "UUID": "sfx-100-streamdeck-plugin.startstopmotiontoggle",
       "PropertyInspectorPath": "PropertyInspector/empty.html"
     },
-
-
     {
       "Icon": "Images/icon",
       "Name": "Disable All Effects",
@@ -92,7 +90,6 @@
       "UUID": "sfx-100-streamdeck-plugin.enablealleffects",
       "PropertyInspectorPath": "PropertyInspector/empty.html"
     },
-
     {
       "Icon": "Images/icon",
       "Name": "Increment Overall Intensity",
@@ -126,18 +123,48 @@
       "Tooltip": "Increment overall intensity",
       "UUID": "sfx-100-streamdeck-plugin.decrementoverallintensity",
       "PropertyInspectorPath": "PropertyInspector/DecrementOverallIntensity.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Is telemety connected?",
+      "States": [
+        {
+          "Name": "Telemetry",
+          "Title": "",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "6"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment overall intensity",
+      "UUID": "sfx-100-streamdeck-plugin.istelemetryproviderconnected",
+      "PropertyInspectorPath": "PropertyInspector/IsTelemetryProviderConnected.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Is running?",
+      "States": [
+        {
+          "Name": "Running?",
+          "Title": "",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "6"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Is running?",
+      "UUID": "sfx-100-streamdeck-plugin.isrunning",
+      "PropertyInspectorPath": "PropertyInspector/IsRunning.html"
     }
-
-
-
-
   ],
   "Author": "ashupp / ashnet GmbH",
   "Name": "sfx-100-streamdeck-plugin",
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.3",
+  "Version": "0.0.1.4",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

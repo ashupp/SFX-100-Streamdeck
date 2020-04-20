@@ -67,8 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PipeContract.cs" />
     <Compile Include="PipeServerConnection.cs" />
+    <Compile Include="PluginActions\IsRunning.cs" />
+    <Compile Include="PluginActions\IsTelemetryProviderConnected.cs" />
     <Compile Include="PluginActions\EnableAllEffects.cs" />
     <Compile Include="PluginActions\DisableAllEffects.cs" />
     <Compile Include="PluginActions\DecrementOverallIntensity.cs" />
@@ -135,6 +136,12 @@
     <Content Include="PropertyInspector\empty.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="PropertyInspector\IsRunning.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\IsTelemetryProviderConnected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PropertyInspector\rcheck.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -145,6 +152,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\sfx-100-streamdeck-pipecontract\sfx-100-streamdeck-pipecontract.csproj">
+      <Project>{0dd43943-2b44-489d-8478-75c5b2f87e8c}</Project>
+      <Name>sfx-100-streamdeck-pipecontract</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

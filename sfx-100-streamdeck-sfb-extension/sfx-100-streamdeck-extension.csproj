@@ -58,8 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GuiLoggerProvider.cs" />
-    <Compile Include="PipeServer.cs" />
-    <Compile Include="PipeContract.cs" />
+    <Compile Include="SfxStreamDeckPipeServer.cs" />
     <Compile Include="SimFeedbackFacadeProvider.cs" />
     <Compile Include="StreamdeckExtension.cs" />
     <Compile Include="StreamdeckExtensionControl.cs">
@@ -68,8 +67,8 @@
     <Compile Include="StreamdeckExtensionControl.Designer.cs">
       <DependentUpon>StreamdeckExtensionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimdeckExtensionControlGui.xaml.cs">
-      <DependentUpon>SimdeckExtensionControlGui.xaml</DependentUpon>
+    <Compile Include="StreamdeckExtensionControlGui.xaml.cs">
+      <DependentUpon>StreamdeckExtensionControlGui.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -84,7 +83,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="SimdeckExtensionControlGui.xaml">
+    <Page Include="StreamdeckExtensionControlGui.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,6 +93,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sfx-100-streamdeck-pipecontract\sfx-100-streamdeck-pipecontract.csproj">
+      <Project>{0dd43943-2b44-489d-8478-75c5b2f87e8c}</Project>
+      <Name>sfx-100-streamdeck-pipecontract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

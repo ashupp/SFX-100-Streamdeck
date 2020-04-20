@@ -1,15 +1,18 @@
 ﻿using System.ServiceModel;
 
-namespace sfx_100_streamdeck_plugin
+namespace sfx_100_streamdeck_pipecontract
 {
     [ServiceContract]
-    interface PipeContract
+    public interface ISfxStreamDeckPipeContract
     {
         [OperationContract]
         bool CheckConnection();
 
         [OperationContract]
         bool IsRunning();
+
+        [OperationContract]
+        bool IsTelemetryProviderConnected();
 
         [OperationContract]
         bool StartMotion();

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using sfx_100_streamdeck_sfb_extension.Properties;
 using System.ServiceModel;
+using sfx_100_streamdeck_pipecontract;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -36,9 +37,9 @@ namespace sfx_100_streamdeck_sfb_extension
         private void StartServer()
         {
             string address = "net.pipe://localhost/ashnet/StreamDeckExtension";
-            _serviceHost = new ServiceHost(typeof(PipeServer));
+            _serviceHost = new ServiceHost(typeof(SfxStreamDeckPipeServer));
             NetNamedPipeBinding binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
-            _serviceHost.AddServiceEndpoint(typeof(PipeContract), binding, address);
+            _serviceHost.AddServiceEndpoint(typeof(ISfxStreamDeckPipeContract), binding, address);
             _serviceHost.Open();
             GuiLoggerProvider.Instance.Log("Waiting for commands");
         }

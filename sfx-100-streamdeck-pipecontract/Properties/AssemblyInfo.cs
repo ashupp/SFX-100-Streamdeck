@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("sfx-100-streamdeck-sfb-extension")]
+[assembly: AssemblyTitle("sfx-100-streamdeck-pipecontract")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("sfx-100-streamdeck-sfb-extension")]
+[assembly: AssemblyProduct("sfx-100-streamdeck-pipecontract")]
 [assembly: AssemblyCopyright("Copyright ©  ashnet GmbH 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("0192378e-d173-4661-a198-a7976ab3d7e0")]
+[assembly: Guid("0dd43943-2b44-489d-8478-75c5b2f87e8c")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //

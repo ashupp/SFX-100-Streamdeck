@@ -1,10 +1,10 @@
-﻿using System;
-using System.ServiceModel;
+﻿using System.ServiceModel;
+using sfx_100_streamdeck_pipecontract;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Single)]
-    public class PipeServer : PipeContract
+    public class SfxStreamDeckPipeServer : ISfxStreamDeckPipeContract
     {
         public bool CheckConnection()
         {
@@ -15,7 +15,19 @@ namespace sfx_100_streamdeck_sfb_extension
         public bool IsRunning()
         {
             GuiLoggerProvider.Instance.Log("Incoming Command: IsRunning");
-            return SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.IsRunning();
+            var isRunning = SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.IsRunning();
+            GuiLoggerProvider.Instance.Log("Returning: " + isRunning);
+            return isRunning;
+
+        }
+
+        public bool IsTelemetryProviderConnected()
+        {
+
+            GuiLoggerProvider.Instance.Log("Incoming Command: IsTelemetryProviderConnected");
+            var isTelemetryProviderConnected = SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.IsTelemetryProviderConnected();
+            GuiLoggerProvider.Instance.Log("Returning: " + isTelemetryProviderConnected);
+            return isTelemetryProviderConnected;
         }
 
         public bool StartMotion()

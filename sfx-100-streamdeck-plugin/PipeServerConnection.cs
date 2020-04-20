@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using BarRaider.SdTools;
+using sfx_100_streamdeck_pipecontract;
 
 namespace sfx_100_streamdeck_plugin
 {
@@ -13,36 +10,25 @@ namespace sfx_100_streamdeck_plugin
         #region Singleton
         private static volatile PipeServerConnection instance;
         private static object syncRoot = new Object();
-        public PipeContract Channel;
+        public ISfxStreamDeckPipeContract Channel;
         private NetNamedPipeBinding _binding;
         private EndpointAddress _ep ;
 
-        private PipeServerConnection()
-        {
-            createServer();
-        }
+        private PipeServerConnection() { }
 
         void createServer()
         {
-            Logger.Instance.LogMessage(TracingLevel.INFO, "createServer");
             string address = "net.pipe://localhost/ashnet/StreamDeckExtension";
-            _binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
-            _ep = new EndpointAddress(address);
-            Channel = ChannelFactory<PipeContract>.CreateChannel(_binding, _ep);
-
-            ((ICommunicationObject)Channel).Faulted += ProxyServiceFactory_Faulted;
-        }
-
-
-        void ProxyServiceFactory_Faulted(object sender, EventArgs e)
-        {
-            Logger.Instance.LogMessage(TracingLevel.INFO, "Channel Faulted...");
-            ((ICommunicationObject)sender).Abort();
-            if (sender is ChannelFactory<PipeContract>)
+            _binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None)
             {
-                Logger.Instance.LogMessage(TracingLevel.INFO, "Recreating...");
-                Channel = ChannelFactory<PipeContract>.CreateChannel(_binding, _ep);
-            }
+                CloseTimeout = TimeSpan.FromSeconds(3),
+                OpenTimeout = TimeSpan.FromSeconds(3),
+                ReceiveTimeout = TimeSpan.FromSeconds(3),
+                SendTimeout = TimeSpan.FromSeconds(3)
+            };
+
+            _ep = new EndpointAddress(address);
+            Channel = ChannelFactory<ISfxStreamDeckPipeContract>.CreateChannel(_binding, _ep);
         }
 
         public static PipeServerConnection Instance
@@ -66,5 +52,22 @@ namespace sfx_100_streamdeck_plugin
             }
         }
         #endregion
+
+        public void RestartChannel()
+        {
+            try
+            {
+                if (Channel != null)
+                {
+                    ((ICommunicationObject) Channel).Abort();
+                    ((ICommunicationObject) Channel).Close();
+                }
+                createServer();
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, "Error during RestartChannel: " + ex.Message);
+            }
+        }
     }
 }

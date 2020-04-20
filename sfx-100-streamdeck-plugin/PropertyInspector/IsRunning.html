@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>sfx_100_streamdeck_plugin Settings</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="sdtools.common.js"></script>
+</head>
+<body>
+<div class="sdpi-wrapper">
+    <div class="sdpi-item" id="dvCheckInterval">
+        <div class="sdpi-item-label">Check Interval (Seconds)</div>
+        <input class="sdpi-item-value sdProperty" placeholder="default 10" value="" id="checkInterval" oninput="setSettings()">
+    </div>
+
+    <div class="sdpi-item" id="dvKeyImage">
+        <div class="sdpi-item-label">Running image</div>
+        <div class="sdpi-item-group file" id="filepickergroup">
+            <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+            <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
+            <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
+        </div>
+    </div>
+    <div class="sdpi-item" id="dvSecondaryImage">
+        <div class="sdpi-item-label">Not running image</div>
+        <div class="sdpi-item-group file" id="filepickergroup">
+            <input class="sdpi-item-value sdProperty sdFile" type="file" id="secondaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+            <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
+            <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

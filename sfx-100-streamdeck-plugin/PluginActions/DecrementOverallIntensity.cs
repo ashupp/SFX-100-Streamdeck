@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using Newtonsoft.Json;
@@ -40,21 +41,29 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             }
         }
 
-        public override void Dispose()
-        {
-            Logger.Instance.LogMessage(TracingLevel.INFO, $"Destructor called");
-        }
+        public override void Dispose() { }
 
         public override void KeyPressed(KeyPayload payload)
-        {
-            Logger.Instance.LogMessage(TracingLevel.INFO, "Key Pressed");
-        }
+{ }
 
         public override void KeyReleased(KeyPayload payload)
         {
-            if (PipeServerConnection.Instance.Channel.CheckConnection())
+            try
             {
+                PipeServerConnection.Instance.RestartChannel();
                 PipeServerConnection.Instance.Channel.DecrementOverallIntensity(Convert.ToInt32(settings.Steps));
+            }
+            catch (EndpointNotFoundException endpointNotFoundException)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: Endpoint not found - Is SimFeedback available and is the Plugin enabled? " + endpointNotFoundException.Message);
+            }
+            catch (CommunicationObjectFaultedException communicationObjectFaultedException)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: communicationObjectFaultedException: " + communicationObjectFaultedException.Message);
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, "Error during Key processing: " + ex.Message);
             }
         }
 
