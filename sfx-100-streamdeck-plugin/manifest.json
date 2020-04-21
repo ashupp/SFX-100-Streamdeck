@@ -5,8 +5,8 @@
       "Name": "Start Motion",
       "States": [
         {
-          "Title": "Start",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/MotionStart",
           "TitleAlignment": "middle",
           "FontSize": "12"
         }
@@ -21,8 +21,8 @@
       "Name": "Stop Motion",
       "States": [
         {
-          "Title": "Stop",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/MotionStop",
           "TitleAlignment": "middle",
           "FontSize": "12"
         }
@@ -37,15 +37,7 @@
       "Name": "Start/Stop Motion Toggle",
       "States": [
         {
-          "Name": "Off",
-          "Title": "Stopped",
-          "Image": "Images/pluginAction",
-          "TitleAlignment": "middle",
-          "FontSize": "12"
-        },
-        {
-          "Name": "On",
-          "Title": "Started",
+          "Title": "",
           "Image": "Images/pluginAction",
           "TitleAlignment": "middle",
           "FontSize": "12"
@@ -54,7 +46,7 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Start Motion",
       "UUID": "sfx-100-streamdeck-plugin.startstopmotiontoggle",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "PropertyInspectorPath": "PropertyInspector/StartStopMotionToggle.html"
     },
     {
       "Icon": "Images/icon",
@@ -62,8 +54,8 @@
       "States": [
         {
           "Name": "Off",
-          "Title": "Disable",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/EffectsDisable",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
@@ -79,14 +71,14 @@
       "States": [
         {
           "Name": "Off",
-          "Title": "Enable",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/EffectsEnable",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Disable All Effects",
+      "Tooltip": "Enable All Effects",
       "UUID": "sfx-100-streamdeck-plugin.enablealleffects",
       "PropertyInspectorPath": "PropertyInspector/empty.html"
     },
@@ -96,8 +88,8 @@
       "States": [
         {
           "Name": "Off",
-          "Title": "Intensity+",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/IntensityUp",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
@@ -113,8 +105,8 @@
       "States": [
         {
           "Name": "Off",
-          "Title": "Intensity-",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/IntensityDown",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
@@ -165,7 +157,7 @@
         {
           "Name": "Start Profile",
           "Title": "",
-          "Image": "Images/pluginAction",
+          "Image": "Images/SFB-Start",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
@@ -181,8 +173,8 @@
       "States": [
         {
           "Name": "Exit SimFeedback",
-          "Title": "Exit SFB",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/SFB-Exit",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
@@ -198,8 +190,8 @@
       "States": [
         {
           "Name": "Start SimFeedback",
-          "Title": "Start SFB",
-          "Image": "Images/pluginAction",
+          "Title": "",
+          "Image": "Images/SFB-Start",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
@@ -216,7 +208,7 @@
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.6",
+  "Version": "0.0.1.7",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

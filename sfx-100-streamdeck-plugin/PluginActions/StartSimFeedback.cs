@@ -98,6 +98,10 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                 StartSFB();
                 actionInProgress = false;
             }
+            else
+            {
+                actionInProgress = false;
+            }
         }
 
         private void WaitStartMotion()

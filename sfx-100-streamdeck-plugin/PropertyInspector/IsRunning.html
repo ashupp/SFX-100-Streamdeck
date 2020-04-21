@@ -11,11 +11,9 @@
 </head>
 <body>
 <div class="sdpi-wrapper">
-    <div class="sdpi-item" id="dvCheckInterval">
-        <div class="sdpi-item-label">Check Interval (Seconds)</div>
-        <input class="sdpi-item-value sdProperty" placeholder="default 10" value="" id="checkInterval" oninput="setSettings()">
-    </div>
-
+    <details class="message info">
+        <summary>This is no pushable button. It only shows if motion is running or not.</summary>
+    </details>
     <div class="sdpi-item" id="dvKeyImage">
         <div class="sdpi-item-label">Not running image</div>
         <div class="sdpi-item-group file" id="filepickergroup">
@@ -31,6 +29,10 @@
             <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
             <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
         </div>
+    </div>
+    <div class="sdpi-item" id="dvCheckInterval">
+        <div class="sdpi-item-label">Check Interval (Seconds)</div>
+        <input class="sdpi-item-value sdProperty" placeholder="default 10" value="" id="checkInterval" oninput="setSettings()">
     </div>
 </div>
 </body>

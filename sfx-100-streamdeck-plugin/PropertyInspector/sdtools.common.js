@@ -66,7 +66,7 @@ function loadConfiguration(payload) {
             }
             else if (elem.classList.contains("sdFile")) { // File
                 var elemFile = document.getElementById(elem.id + "Filename");
-                elemFile.innerText = payload[key];
+                elemFile.innerText = correctFakePath(payload[key]);
                 if (!elemFile.innerText) {
                     elemFile.innerText = "No file...";
                 }
@@ -101,6 +101,16 @@ function loadConfiguration(payload) {
     }
 }
 
+function correctFakePath(thePath) {
+    if (thePath.indexOf("fakepath") !== -1) {
+        thePath = decodeURIComponent(thePath);
+        thePath = thePath.replace("C:\\fakepath\\", "");
+        return thePath;
+    } else {
+        return thePath;
+    }
+}
+
 function setSettings() {
     var payload = {};
     var elements = document.getElementsByClassName("sdProperty");
@@ -112,14 +122,14 @@ function setSettings() {
         }
         else if (elem.classList.contains("sdFile")) { // File
             var elemFile = document.getElementById(elem.id + "Filename");
-            payload[key] = elem.value;
+            payload[key] = correctFakePath(elem.value);
             if (!elem.value) {
                 // Fetch innerText if file is empty (happens when we lose and regain focus to this key)
-                payload[key] = elemFile.innerText;
+                payload[key] = correctFakePath(elemFile.innerText);
             }
             else {
                 // Set value on initial file selection
-                elemFile.innerText = elem.value;
+                elemFile.innerText = correctFakePath(elem.value);
             }
         }
         else if (elem.classList.contains("sdList")) { // Dynamic dropdown

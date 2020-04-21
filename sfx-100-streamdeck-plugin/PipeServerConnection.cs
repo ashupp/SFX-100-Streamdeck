@@ -23,7 +23,7 @@ namespace sfx_100_streamdeck_plugin
             {
                 CloseTimeout = TimeSpan.FromSeconds(5),
                 OpenTimeout = TimeSpan.FromSeconds(5),
-                ReceiveTimeout = TimeSpan.FromSeconds(5),
+                ReceiveTimeout = TimeSpan.FromSeconds(10),
                 SendTimeout = TimeSpan.FromSeconds(5)
             };
 

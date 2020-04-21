@@ -101,8 +101,6 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             {
                 Logger.Instance.LogMessage(TracingLevel.ERROR, $"OnTick error: {ex}");
             }
-            
-
         }
 
         private async Task SetError()

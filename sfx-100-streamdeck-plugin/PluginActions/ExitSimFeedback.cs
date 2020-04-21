@@ -17,25 +17,28 @@ namespace sfx_100_streamdeck_plugin.PluginActions
 
         public override void KeyReleased(KeyPayload payload)
         {
-            _actionInProgress = true;
-            foreach (var process in Process.GetProcessesByName("SimFeedbackStart"))
+            if (!_actionInProgress)
             {
-                Logger.Instance.LogMessage(TracingLevel.INFO, "Shutting down SimFeedback Process");
-                process.EnableRaisingEvents = true;
-
-                process.Exited += delegate (object o, EventArgs args)
+                _actionInProgress = true;
+                foreach (var process in Process.GetProcessesByName("SimFeedbackStart"))
                 {
-                    Logger.Instance.LogMessage(TracingLevel.INFO, "Shutting down SimFeedback Process completed. Exit Code: " + process.ExitCode);
+                    Logger.Instance.LogMessage(TracingLevel.INFO, "Shutting down SimFeedback Process");
+                    process.EnableRaisingEvents = true;
+
+                    process.Exited += delegate (object o, EventArgs args)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.INFO, "Shutting down SimFeedback Process completed. Exit Code: " + process.ExitCode);
+                        _actionInProgress = false;
+                    };
+
+                    DateTime start = DateTime.Now;
+                    while (!process.HasExited && DateTime.Now - start <= TimeSpan.FromSeconds(15))
+                    {
+                        process.WaitForInputIdle();
+                        process.CloseMainWindow();
+                    }
                     _actionInProgress = false;
-                };
-
-                DateTime start = DateTime.Now;
-                while (!process.HasExited && DateTime.Now - start <= TimeSpan.FromSeconds(15))
-                {
-                    process.WaitForInputIdle();
-                    process.CloseMainWindow();
                 }
-                _actionInProgress = false;
             }
         }
 
