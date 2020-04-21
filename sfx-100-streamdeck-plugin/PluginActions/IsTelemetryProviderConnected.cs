@@ -68,7 +68,8 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                     try
                     {
                         PipeServerConnection.Instance.RestartChannel();
-                        var telemetryProviderConnected = PipeServerConnection.Instance.Channel.IsTelemetryProviderConnected();
+                        var telemetryProviderConnected =
+                            PipeServerConnection.Instance.Channel.IsTelemetryProviderConnected();
                         if (telemetryProviderConnected)
                         {
                             await SetConnected();
@@ -79,11 +80,17 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                         }
                     }
                     catch (EndpointNotFoundException endpointNotFoundException)
-                    { }
+                    {
+                        await SetError();
+                    }
                     catch (CommunicationObjectFaultedException communicationObjectFaultedException)
-                    { }
+                    {
+                        await SetError();
+                    }
                     catch (Exception ex)
-                    { }
+                    {
+                        await SetError();
+                    }
                     
                     lastRefresh = DateTime.Now;
                 }
@@ -98,7 +105,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
 
         private async Task SetError()
         {
-            await Connection.SetTitleAsync("Error");
+            await SetDisconnected();
         }
 
         private async Task SetDisconnected()

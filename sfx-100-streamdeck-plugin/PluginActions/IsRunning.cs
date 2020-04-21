@@ -79,11 +79,17 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                         }
                     }
                     catch (EndpointNotFoundException endpointNotFoundException)
-                    { }
+                    {
+                        await SetError();
+                    }
                     catch (CommunicationObjectFaultedException communicationObjectFaultedException)
-                    { }
+                    {
+                        await SetError();
+                    }
                     catch (Exception ex)
-                    { }
+                    {
+                        await SetError();
+                    }
                     
                     lastRefresh = DateTime.Now;
                 }
@@ -96,7 +102,8 @@ namespace sfx_100_streamdeck_plugin.PluginActions
 
         private async Task SetError()
         {
-            await Connection.SetTitleAsync("Error");
+            await SetNotRunning();
+
         }
 
         private async Task SetNotRunning()
