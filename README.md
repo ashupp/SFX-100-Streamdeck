@@ -1,7 +1,8 @@
 # SFX-100-Streamdeck
 Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-Rig 
 
-## Prerelease on the release tab (And click on "assets") 
+### Prerelease on the release tab (And click on "assets") 
+https://github.com/ashupp/SFX-100-Streamdeck/releases/latest
 
 ![In action](doc/screenshot.JPG?raw=true|width=200)
 
