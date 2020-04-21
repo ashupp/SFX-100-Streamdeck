@@ -79,20 +79,11 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                         }
                     }
                     catch (EndpointNotFoundException endpointNotFoundException)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: Endpoint not found - Is SimFeedback available and is the Plugin enabled? " + endpointNotFoundException.Message);
-                        await SetError();
-                    }
+                    { }
                     catch (CommunicationObjectFaultedException communicationObjectFaultedException)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: communicationObjectFaultedException: " + communicationObjectFaultedException.Message);
-                        await SetError();
-                    }
+                    { }
                     catch (Exception ex)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error during Key processing: " + ex.Message);
-                        await SetError();
-                    }
+                    { }
                     
                     lastRefresh = DateTime.Now;
                 }
