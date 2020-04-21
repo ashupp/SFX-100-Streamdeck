@@ -37,8 +37,8 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                         process.WaitForInputIdle();
                         process.CloseMainWindow();
                     }
-                    _actionInProgress = false;
                 }
+                _actionInProgress = false;
             }
         }
 
