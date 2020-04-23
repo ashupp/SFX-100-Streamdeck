@@ -11,6 +11,8 @@ It is now possible to start SimFeedback with a desired profile and enable Motion
 - If SimFeedback is not startet it will start it for you.  
 - If SimFeedback is already running it will be restarted with the (new) desired profile automatically.
 
+:warning: **The selected profile MUST be located in SimFeedback profiles folder** 
+
 ![In action](doc/screenshot2.JPG?raw=true|width=200)
 
 ## Requirements
