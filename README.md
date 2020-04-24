@@ -25,8 +25,8 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 
 ## Installation
 - Do not click on Download on this page. Download the files from the release tab or use the following links:
-  - [latest StreamDeckExtension.zip](releases/latest/download/StreamdeckExtension.zip)
-  - [latest StreamDeckPlugin](releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
+  - [latest StreamDeckExtension.zip](ashupp/SFX-100-Streamdeck/releases/latest/download/asset-name.zipExtension.zip)
+  - [latest StreamDeckPlugin](ashupp/SFX-100-Streamdeck/releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
 - Unzip the Extension into the Simfeedback Extension dir and Enable in SimFeedback
 - Install the Streamdeck extension by double-click
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
