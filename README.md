@@ -27,7 +27,7 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 - Do not click on Download on this page. Download the files from the release tab or use the following links:
   - [latest StreamDeckExtension.zip](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/StreamdeckExtension.zip)
   - [latest StreamDeckPlugin](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
-- Unzip the extension into the Simfeedback extension dir.
+- Unzip the extension into the SimFeedback extension dir.
 - Enable the plugin and enable autorun of the extension in SimFeedback
 - Install the Streamdeck extension by double-click
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
@@ -35,18 +35,18 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 ## Updating
 Prepare by downloading the new versions (see above)
 
-**Remove the old StreamDeck plugin**
-- Do this by opening the StreamDeck application and click the lower right button "More actions"
-- Locate sfx-100-streamdeck-plugin and click Uninstall
-- Install the new version of the StreemDeck plugin by double-click  
-- Your buttons should be still be there after installing the new version  
-
-**Remove the old SimFeedback plugin**
+**Update SimFeedback extension**
 - Close SimFeedback if it is running
 - Locate Extensions folder. Delete Folder "StreamdeckExtension"
-- Unzip the ne version of the extension into the Simfeedback extension dir
+- Unzip the new version of the extension into the Simfeedback extension dir
 - Start SimFeedback, re-enable the extension and autostart if necessary and check if the version is the new one
-- Finally click on the extensions tab to see if the extension is running
+- Click on the extensions tab to see if the extension is running
+
+**Update StreamDeck plugin**
+- Open the windows StreamDeck application and click the lower right button "More actions"
+- Locate sfx-100-streamdeck-plugin and click Uninstall
+- Install the new version of the StreamDeck plugin by double-click  
+- Your buttons should be still be there after installing the new version  
 
 ## Known issues
 - "Is telemetry provider connected?" is set to true as soon as any telemetry provider is connected but it will never be false again. Even if the telemetry provider changes or is disconnected. This seems to be a problem of the SimFeedback API.
