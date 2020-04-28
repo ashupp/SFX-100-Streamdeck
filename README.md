@@ -32,12 +32,28 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 - Install the Streamdeck extension by double-click
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
 
+## Updating
+Prepare by downloading the new versions (see above)
+
+**Remove the old StreamDeck plugin**
+- Do this by opening the StreamDeck application and click the lower right button "More actions"
+- Locate sfx-100-streamdeck-plugin and click Uninstall
+- Install the new version of the StreemDeck plugin by double-click  
+- Your buttons should be still be there after installing the new version  
+
+**Remove the old SimFeedback plugin**
+- Close SimFeedback if it is running
+- Locate Extensions folder. Delete Folder "StreamdeckExtension"
+- Unzip the ne version of the extension into the Simfeedback extension dir
+- Start SimFeedback, re-enable the extension and autostart if necessary and check if the version is the new one
+- Finally click on the extensions tab to see if the extension is running
+
 ## Known issues
 - "Is telemetry provider connected?" is set to true as soon as any telemetry provider is connected but it will never be false again. Even if the telemetry provider changes or is disconnected. This seems to be a problem of the SimFeedback API.
 
 ## Ideas / Future implementation
 - ~~Change / activate Profile with click on button~~ (Available since 0.0.1.5)
-- Display of current intensity value on button face (thx @Flag Ghost)
+- Display of current intensity value on button face (thx @Flag Ghost) - not yet possible since data not provided by SimFeedback API (as of Version 00.09.08b)
 
 ## Third party Libraries
 **This tool makes use of the following great projects:**
