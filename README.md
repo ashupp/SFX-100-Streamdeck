@@ -39,7 +39,7 @@ Prepare by downloading the new versions (see above)
 - Close SimFeedback if it is running
 - Locate Extensions folder. Delete Folder "StreamdeckExtension"
 - Unzip the new version of the extension into the Simfeedback extension dir
-- Start SimFeedback, re-enable the extension and autostart if necessary and check if the version is the new one
+- Start SimFeedback, re-enable the extension and autostart and check if the version is the new one
 - Click on the extensions tab to see if the extension is running
 
 **Update StreamDeck plugin**
