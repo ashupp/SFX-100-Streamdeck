@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.elementHost = new System.Windows.Forms.Integration.ElementHost();
-            this._streamdeckExtensionControlGui1 = new StreamdeckExtensionControlGui();
+            this._streamdeckExtensionControlGui1 = new sfx_100_streamdeck_sfb_extension.StreamdeckExtensionControlGui();
             this.SuspendLayout();
             // 
             // elementHost

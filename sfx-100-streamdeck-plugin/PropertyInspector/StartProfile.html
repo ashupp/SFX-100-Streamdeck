@@ -12,7 +12,7 @@
 <body>
 <div class="sdpi-wrapper">    
     <details class="message info">
-        <summary>Please be careful with this Beta function. It may corrupt your profile files or lead to unexpected movement of your rig. Maybe it will not work at all :)</summary>
+        <summary>The selected profile xml below MUST be located in the SimFeedback profiles folder.</summary>
     </details>
     <div class="sdpi-item" id="dvKeyProfile">
         <div class="sdpi-item-label">Profile XML to start</div>
@@ -36,11 +36,13 @@
             <label for="startMotionAfterProfileLoaded" class="sdpi-item-label"><span></span>Start Motion after SimFeedback started</label>
         </div>
     </div>
-    <div type="checkbox" class="sdpi-item" id="dvStartSfbMinimized">
-        <div class="sdpi-item-value">
-            <input id="startSfbMinimized" class="sdProperty sdCheckbox" type="checkbox" value="" oninput="setSettings()">
-            <label for="startSfbMinimized" class="sdpi-item-label"><span></span>Start SimFeedback minimized</label>
-        </div>
+    <div class="sdpi-item" id="startupWindowMode">
+        <div class="sdpi-item-label">Startup window mode</div>
+        <select class="sdpi-item-value select sdProperty" id="sfbWindowStyle" oninput="setSettings()">
+            <option value="Normal">Normal window</option>
+            <option value="Minimized">Minimized window</option>
+            <option value="Maximized">Maximized window</option>
+        </select>
     </div>
 </div>
 </body>

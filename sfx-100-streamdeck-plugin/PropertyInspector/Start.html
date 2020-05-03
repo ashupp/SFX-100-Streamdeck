@@ -10,27 +10,29 @@
     <script src="sdtools.common.js"></script>
 </head>
 <body>
-<div class="sdpi-wrapper">
-    <div class="sdpi-item" id="dvKeyProfile">
-        <div class="sdpi-item-label">SimFeedbackstart exe Path</div>
-        <div class="sdpi-item-group file" id="filepickergroup">
-            <input class="sdpi-item-value sdProperty sdFile" type="file" id="sfbExe" accept=".exe" oninput="setSettings()">
-            <label class="sdpi-file-info " for="sfbExe" id="sfbExeFilename">No file...</label>
-            <label class="sdpi-file-label" for="sfbExe">Choose file...</label>
+    <div class="sdpi-wrapper">
+        <div class="sdpi-item" id="dvKeyProfile">
+            <div class="sdpi-item-label">SimFeedbackstart exe Path</div>
+            <div class="sdpi-item-group file" id="filepickergroup">
+                <input class="sdpi-item-value sdProperty sdFile" type="file" id="sfbExe" accept=".exe" oninput="setSettings()">
+                <label class="sdpi-file-info " for="sfbExe" id="sfbExeFilename">No file...</label>
+                <label class="sdpi-file-label" for="sfbExe">Choose file...</label>
+            </div>
+        </div>
+        <div type="checkbox" class="sdpi-item" id="dvStartMotionAfterProfileLoad">
+            <div class="sdpi-item-value">
+                <input id="startMotionAfterProfileLoaded" class="sdProperty sdCheckbox" type="checkbox" value="" oninput="setSettings()">
+                <label for="startMotionAfterProfileLoaded" class="sdpi-item-label"><span></span>Start Motion after SimFeedback started</label>
+            </div>
+        </div>
+        <div class="sdpi-item" id="startupWindowMode">
+            <div class="sdpi-item-label">Startup window mode</div>
+            <select class="sdpi-item-value select sdProperty" id="sfbWindowStyle" oninput="setSettings()">
+                <option value="Normal">Normal window</option>
+                <option value="Minimized">Minimized window</option>
+                <option value="Maximized">Maximized window</option>
+            </select>
         </div>
     </div>
-    <div type="checkbox" class="sdpi-item" id="dvStartMotionAfterProfileLoad">
-        <div class="sdpi-item-value">
-            <input id="startMotionAfterProfileLoaded" class="sdProperty sdCheckbox" type="checkbox" value="" oninput="setSettings()">
-            <label for="startMotionAfterProfileLoaded" class="sdpi-item-label"><span></span>Start Motion after SimFeedback started</label>
-        </div>
-    </div>
-    <div type="checkbox" class="sdpi-item" id="dvStartSfbMinimized">
-        <div class="sdpi-item-value">
-            <input id="startSfbMinimized" class="sdProperty sdCheckbox" type="checkbox" value="" oninput="setSettings()">
-            <label for="startSfbMinimized" class="sdpi-item-label"><span></span>Start SimFeedback minimized</label>
-        </div>
-    </div>
-</div>
 </body>
 </html>

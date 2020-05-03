@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using BarRaider.SdTools;
 
 namespace sfx_100_streamdeck_plugin.PluginActions
@@ -34,8 +35,9 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                     DateTime start = DateTime.Now;
                     while (!process.HasExited && DateTime.Now - start <= TimeSpan.FromSeconds(15))
                     {
-                        process.WaitForInputIdle();
+                        process.WaitForInputIdle(5000);
                         process.CloseMainWindow();
+                        Thread.Sleep(500);
                     }
                 }
                 _actionInProgress = false;

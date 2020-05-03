@@ -23,7 +23,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                 PluginSettings instance = new PluginSettings();
                 instance.ProfileToLoad = string.Empty;
                 instance.SfbExe = string.Empty;
-                instance.StartSfbMinimized = false;
+                instance.SfbWindowStyle = "Normal";
                 instance.StartMotionAfterProfileLoaded = false;
                 return instance;
             }
@@ -39,8 +39,8 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             [JsonProperty(PropertyName = "startMotionAfterProfileLoaded")]
             public bool StartMotionAfterProfileLoaded { get; set; }            
             
-            [JsonProperty(PropertyName = "startSfbMinimized")]
-            public bool StartSfbMinimized { get; set; }
+            [JsonProperty(PropertyName = "sfbWindowStyle")]
+            public string SfbWindowStyle { get; set; }
 
         }
 
@@ -166,8 +166,12 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             // Start SFB
             ProcessStartInfo psi = new ProcessStartInfo(settings.SfbExe);
             psi.UseShellExecute = true;
-            if(settings.StartSfbMinimized)
-                psi.WindowStyle = ProcessWindowStyle.Minimized;
+            if (settings.SfbWindowStyle != "")
+            {
+                var windowStyle = (ProcessWindowStyle) Enum.Parse(typeof(ProcessWindowStyle), settings.SfbWindowStyle);
+                psi.WindowStyle = windowStyle;
+            }
+            
             psi.WorkingDirectory = Path.GetDirectoryName(settings.SfbExe);
             var newProc = Process.Start(psi);
             newProc.WaitForInputIdle();
