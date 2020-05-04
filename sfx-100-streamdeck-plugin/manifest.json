@@ -34,22 +34,6 @@
     },
     {
       "Icon": "Images/icon",
-      "Name": "Start/Stop Motion Toggle",
-      "States": [
-        {
-          "Title": "",
-          "Image": "Images/pluginAction",
-          "TitleAlignment": "middle",
-          "FontSize": "12"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Start Motion",
-      "UUID": "sfx-100-streamdeck-plugin.startstopmotiontoggle",
-      "PropertyInspectorPath": "PropertyInspector/StartStopMotionToggle.html"
-    },
-    {
-      "Icon": "Images/icon",
       "Name": "Disable All Effects",
       "States": [
         {
