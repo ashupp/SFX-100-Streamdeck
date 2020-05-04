@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using SimFeedback.extension;
 
@@ -69,6 +69,18 @@ namespace sfx_100_streamdeck_sfb_extension
                 this.ParentForm.KeyDown += ParentForm_KeyDown;
                 ParentForm.KeyPreview = true;
             }
+
+
+
+            /*GuiLoggerProvider.Instance.Log("4 Loading Elements for UI Automation");
+
+            var mainWindowHandle = SimFeedbackInvoker.Instance.GetHandleWindow("SimFeedback - 00.09.08");
+
+            GuiLoggerProvider.Instance.Log("4 Aktuelles Window handle: " + mainWindowHandle);
+            */
+
+            //SimFeedbackInvoker.Instance.LoadElements();
+
         }
 
 

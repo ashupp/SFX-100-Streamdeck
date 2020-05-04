@@ -1,5 +1,7 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using sfx_100_streamdeck_pipecontract;
+using WpfApp2;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -114,6 +116,298 @@ namespace sfx_100_streamdeck_sfb_extension
             {
                 return false;
             }
+        }
+
+        public void SetOverallIntensity(int value)
+        {
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr) SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle,value);
+        }
+
+        public int GetOverallIntensity()
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
+        }
+
+        public void ResetOverallIntensity()
+        {
+            SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.BtnResetOverallIntensity.Current.NativeWindowHandle);
+        }
+
+        public void ControllerIntensityIncrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void ControllerIntensityDecrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void ControllerIntensitySet(string controllerName, int value)
+        {
+            GuiLoggerProvider.Instance.Log("Incoming Command: ControllerIntensitySet " + controllerName + " -- " + value);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle, value);
+        }
+
+        public int ControllerIntensityGet(string controllerName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr) SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
+        }
+
+        public void ControllerIntensityReset(string controllerName)
+        {
+            SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].IntensityResetButton.Current.NativeWindowHandle);
+        }
+
+        public void ControllerSmoothnessIncrement(string controllerName, int steps)
+        {
+            var currVal =SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void ControllerSmoothnessDecrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void ControllerSmoothnessSet(string controllerName, int value)
+        {
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle, value);
+        }
+
+        public int ControllerSmoothnessGet(string controllerName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
+        }
+
+        public bool ControllerSmoothnessIsEnabled(string controllerName)
+        {
+            return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled);
+        }
+
+        public void ControllerSmoothnessEnable(string controllerName)
+        {
+            if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
+            }
+        }
+
+        public void ControllerSmoothnessDisable(string controllerName)
+        {
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
+            }
+        }
+
+        public void ControllerSmoothnessToggle(string controllerName)
+        {
+            SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
+        }
+
+        public void ControllerAccelerationIncrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void ControllerAccelerationDecrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void ControllerAccelerationSet(string controllerName, int value)
+        {
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle, value);
+        }
+
+        public int ControllerAccelerationGet(string controllerName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
+        }
+
+        public void ControllerMinSpeedIncrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void ControllerMinSpeedDecrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void ControllerMinSpeedSet(string controllerName, int value)
+        {
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle, value);
+        }
+
+        public int ControllerMinSpeedGet(string controllerName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
+        }
+
+        public void ControllerMaxSpeedIncrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void ControllerMaxSpeedDecrement(string controllerName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void ControllerMaxSpeedSet(string controllerName, int value)
+        {
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle, value);
+        }
+
+        public int ControllerMaxSpeedGet(string controllerName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
+        }
+
+        public void EffectSmoothingIncrement(string effectName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void EffectSmoothingDecrement(string effectName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void EffectSmoothingSet(string effectName, int value)
+        {
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle, value);
+        }
+
+        public int EffectSmoothingGet(string effectName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
+        }
+
+        public void EffectIntensityIncrement(string effectName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle, currVal + steps);
+        }
+
+        public void EffectIntensityDecrement(string effectName, int steps)
+        {
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle, currVal - steps);
+        }
+
+        public void EffectIntensitySet(string effectName, int value)
+        {
+            GuiLoggerProvider.Instance.Log("Incoming Command: EffectIntensitySet " + effectName + " -- " + value);
+            if (SimFeedbackInvoker.Instance.actionElements.Effects.ContainsKey(effectName))
+            {
+                GuiLoggerProvider.Instance.Log("Incoming Command: EffectIntensitySet  - Effekt gefunden");
+            }
+            else
+            {
+                GuiLoggerProvider.Instance.Log("Incoming Command: EffectIntensitySet  - Effekt nicht gefunden");
+                GuiLoggerProvider.Instance.Log("Incoming Command: Effect Keys: " + String.Join(",",SimFeedbackInvoker.Instance.actionElements.Effects.Keys));
+                GuiLoggerProvider.Instance.Log("Incoming Command: Controller Keys: " + String.Join(",",SimFeedbackInvoker.Instance.actionElements.Controllers.Keys));
+            }
+
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle, value);
+        }
+
+        public int EffectIntensityGet(string effectName)
+        {
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
+        }
+
+        public bool EffectLinearIsEnabled(string effectName)
+        {
+            return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated);
+        }
+
+        public void EffectLinearEnable(string effectName)
+        {
+            if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
+            }
+        }
+
+        public void EffectLinearDisable(string effectName)
+        {
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
+            }
+        }
+
+        public void EffectLinearToggle(string effectName)
+        {
+            SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
+        }
+
+        public bool EffectIsEnabled(string effectName)
+        {
+            return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled);
+        }
+
+        public void EffectEnable(string effectName)
+        {
+            if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
+            }
+        }
+
+        public void EffectDisable(string effectName)
+        {
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
+            }
+        }
+
+        public void EffectToggle(string effectName)
+        {
+
+            SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
+        }
+
+        public bool EffectIsMuted(string effectName)
+        {
+            return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted);
+        }
+
+        public void EffectMuteEnable(string effectName)
+        {
+            if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
+            }
+        }
+
+        public void EffectMuteDisable(string effectName)
+        {
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted))
+            {
+                SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
+            }
+        }
+
+        public void EffectMuteToggle(string effectName)
+        {
+            SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
         }
     }
 }

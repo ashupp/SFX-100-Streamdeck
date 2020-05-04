@@ -15,7 +15,9 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="streamdeckExtensionTitle" Content="Streamdeck Extension" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"><Hyperlink NavigateUri="https://github.com/ashupp/SFX-100-Streamdeck" RequestNavigate="Hyperlink_OnRequestNavigate" ><Run Text="https://github.com/ashupp/SFX-100-Streamdeck"/></Hyperlink></TextBlock>
-        <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,86,598,0" Height="160"/>
+        <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" Margin="10,86,598,10"/>
+        <Button Content="Save Log" HorizontalAlignment="Left" Margin="358,38,0,0" VerticalAlignment="Top" Width="133" Click="Button_Click"/>
+        <Button Content="Reload UI Automation" HorizontalAlignment="Left" Margin="496,38,0,0" VerticalAlignment="Top" Width="133" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

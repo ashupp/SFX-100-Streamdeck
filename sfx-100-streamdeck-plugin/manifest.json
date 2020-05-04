@@ -116,6 +116,119 @@
       "UUID": "sfx-100-streamdeck-plugin.decrementoverallintensity",
       "PropertyInspectorPath": "PropertyInspector/DecrementOverallIntensity.html"
     },
+
+
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Increment Controller Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueUp",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment Controller Values",
+      "UUID": "sfx-100-streamdeck-plugin.incrementcontrollervalues",
+      "PropertyInspectorPath": "PropertyInspector/IncrementControllerValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Decrement Controller Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueDown",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Decrement Controller Values",
+      "UUID": "sfx-100-streamdeck-plugin.decrementcontrollervalues",
+      "PropertyInspectorPath": "PropertyInspector/DecrementControllerValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Set Controller Value",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Set Controller Value",
+      "UUID": "sfx-100-streamdeck-plugin.setcontrollervalue",
+      "PropertyInspectorPath": "PropertyInspector/SetControllerValue.html"
+    },
+
+
+
+
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Increment Effect Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueUp",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment Effect Values",
+      "UUID": "sfx-100-streamdeck-plugin.incrementeffectvalues",
+      "PropertyInspectorPath": "PropertyInspector/IncrementEffectValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Decrement Effect Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueDown",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Decrement Effect Values",
+      "UUID": "sfx-100-streamdeck-plugin.decrementeffectvalues",
+      "PropertyInspectorPath": "PropertyInspector/DecrementEffectValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Set Effect Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/pluginAction",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Set Effect Value",
+      "UUID": "sfx-100-streamdeck-plugin.seteffectvalue",
+      "PropertyInspectorPath": "PropertyInspector/SetEffectValue.html"
+    },
+
+
+
     {
       "Icon": "Images/icon",
       "Name": "Is telemety connected?",
@@ -201,14 +314,13 @@
       "UUID": "sfx-100-streamdeck-plugin.startsimfeedback",
       "PropertyInspectorPath": "PropertyInspector/Start.html"
     }
-
   ],
   "Author": "ashupp / ashnet GmbH",
   "Name": "sfx-100-streamdeck-plugin",
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.8",
+  "Version": "0.0.2.0",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

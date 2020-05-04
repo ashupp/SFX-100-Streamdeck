@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -45,7 +45,7 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             if (LogBox != null)
             {
-                if (LogBox.Items.Count >= 250)
+                if (LogBox.Items.Count >= 1000)
                 {
                     LogBox.Items.RemoveAt(0);
                 }
