@@ -81,12 +81,10 @@ namespace sfx_100_streamdeck_sfb_extension
 
             TBM_GETRANGEMAX = 0x0402,   // Get max range
             TBM_GETRANGEMIN = 0x0401,   // Get min range
-            TBM_GETPOS = 0x0400,    // Trackbar get position
-            TBM_SETPOS = 0x0405,     // Trackbar set position
-            TBM_SETPOSNOTIFY = 0x0422,
-            WM_NOTIFY = 0x004E,
-            WM_NOTIFYFORMAT = 0x0055
-    }
+            TBM_GETPOS = 0x0400,        // Trackbar get position
+            TBM_SETPOS = 0x0405,        // Trackbar set position
+            TBM_SETPOSNOTIFY = 0x0422,  // Trackbar set position with notify
+        }
 
 
         public void ClickElement(IntPtr hwndChild)
