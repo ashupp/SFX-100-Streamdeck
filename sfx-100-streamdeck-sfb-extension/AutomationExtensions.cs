@@ -10,6 +10,13 @@ namespace sfx_100_streamdeck_sfb_extension
                 : element.TryGetCurrentPattern(TextPattern.Pattern, out object patternText) ? ((TextPattern)patternText).DocumentRange.GetText(-1).TrimEnd('\r') // often there is an extra '\r' hanging off the end.
                 : element.Current.Name;
 
+        // Does not notify...
+        public static void SetSliderValue(AutomationElement element, double theValue)
+        {
+            element.SetFocus();
+            var range = element.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
+            range.SetValue(theValue);
+        }
 
         public static bool IsElementToggledOn(AutomationElement element)
         {
