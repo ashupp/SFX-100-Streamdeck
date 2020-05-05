@@ -154,11 +154,6 @@
       "UUID": "sfx-100-streamdeck-plugin.setcontrollervalue",
       "PropertyInspectorPath": "PropertyInspector/SetControllerValue.html"
     },
-
-
-
-
-
     {
       "Icon": "Images/icon",
       "Name": "Increment Effect Values",
@@ -210,6 +205,44 @@
       "UUID": "sfx-100-streamdeck-plugin.seteffectvalue",
       "PropertyInspectorPath": "PropertyInspector/SetEffectValue.html"
     },
+    {
+      "Icon": "Images/icon",
+      "Name": "Enable Effect Property",
+      "States": [
+        {
+          "Name": "Enable",
+          "Title": "",
+          "Image": "Images/PropertyEnable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Enable Effect Property",
+      "UUID": "sfx-100-streamdeck-plugin.enableeffectproperty",
+      "PropertyInspectorPath": "PropertyInspector/EnableEffectProperty.html"
+    },
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Disable Effect Property",
+      "States": [
+        {
+          "Name": "Disable",
+          "Title": "",
+          "Image": "Images/PropertyDisable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable Effect Property",
+      "UUID": "sfx-100-streamdeck-plugin.disableeffectproperty",
+      "PropertyInspectorPath": "PropertyInspector/DisableEffectProperty.html"
+    },
+
+
+
 
 
 
@@ -304,7 +337,7 @@
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.2.1",
+  "Version": "0.0.2.2",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",
