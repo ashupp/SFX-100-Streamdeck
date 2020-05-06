@@ -364,7 +364,39 @@
       "Tooltip": "Start SimFeedback",
       "UUID": "sfx-100-streamdeck-plugin.startsimfeedback",
       "PropertyInspectorPath": "PropertyInspector/Start.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Show Effect Value",
+      "States": [
+        {
+          "Image": "Images/Blank",
+          "TitleAlignment": "middle",
+          "FontSize": "16"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Show Effect Value",
+      "UUID": "sfx-100-streamdeck-plugin.showeffectvalue",
+      "PropertyInspectorPath": "PropertyInspector/ShowEffectValue.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Show Controller Value",
+      "States": [
+        {
+          "Image": "Images/Blank",
+          "TitleAlignment": "middle",
+          "FontSize": "16"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Show Controller Value",
+      "UUID": "sfx-100-streamdeck-plugin.showcontrollervalue",
+      "PropertyInspectorPath": "PropertyInspector/ShowControllerValue.html"
     }
+
+
   ],
   "Author": "ashupp / ashnet GmbH",
   "Name": "sfx-100-streamdeck-plugin",
