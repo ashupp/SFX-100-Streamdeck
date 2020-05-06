@@ -6,9 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Automation;
-using System.Windows.Threading;
 using System.Xml.Linq;
 using sfx_100_streamdeck_sfb_extension.Properties;
 using WpfApp2;
@@ -100,34 +98,32 @@ namespace sfx_100_streamdeck_sfb_extension
 
 
         public void LoadElements()
-        { 
-            
-            
-            GuiLoggerProvider.Instance.Log("Loading Elements for UI Automation");
+        {
 
-            //var mainWindowHandle = GetHandleWindow("SimFeedback - 00.09.08");
-            _currProcess = Process.GetCurrentProcess();
-            var mainWindowHandle = _currProcess.MainWindowHandle;
-
-            GuiLoggerProvider.Instance.Log("Aktuelles Window handle: " + mainWindowHandle);
-
-            actionElements = new ActionElements();
-
-
-
-            if ((int)mainWindowHandle != 0)
+            try
             {
+                GuiLoggerProvider.Instance.Log("Loading Elements for UI Automation");
 
-                GuiLoggerProvider.Instance.Log("Loading..");
-                
-                
-                AutomationElement root = AutomationElement.FromHandle(mainWindowHandle);
+                //var mainWindowHandle = GetHandleWindow("SimFeedback - 00.09.08");
+                _currProcess = Process.GetCurrentProcess();
+                var mainWindowHandle = _currProcess.MainWindowHandle;
 
-                GuiLoggerProvider.Instance.Log("Root Elem: " + root.Current.Name);
+                GuiLoggerProvider.Instance.Log("Aktuelles Window handle: " + mainWindowHandle);
+
+                actionElements = new ActionElements();
 
 
-                if (checkForElements(root))
+                if ((int)mainWindowHandle != 0)
                 {
+
+                    GuiLoggerProvider.Instance.Log("Loading..");
+                    
+                    
+                    AutomationElement root = AutomationElement.FromHandle(mainWindowHandle);
+
+                    GuiLoggerProvider.Instance.Log("Root Elem: " + root.Current.Name);
+
+
                     root = AutomationElement.FromHandle(mainWindowHandle);
                     //Instance.profilePanel = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "groupBox2"));
                     Instance.profilePanel = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "profileView"));
@@ -145,17 +141,14 @@ namespace sfx_100_streamdeck_sfb_extension
                     AddProfileChangeDetector();
                 }
 
-
-
-
-
+                GuiLoggerProvider.Instance.Log("Controller keys available: " + String.Join(", ", Instance.actionElements.Controllers.Keys));
+                GuiLoggerProvider.Instance.Log("Effect keys available: " + String.Join(", ", Instance.actionElements.Effects.Keys));
+                GuiLoggerProvider.Instance.Log("Finished Loading Elements for UI Automation");
             }
-
-            GuiLoggerProvider.Instance.Log("Finished Loading Elements for UI Automation");
-            GuiLoggerProvider.Instance.Log("Controller keys available: " + String.Join(", ", Instance.actionElements.Controllers.Keys));
-            GuiLoggerProvider.Instance.Log("Effect keys available: " + String.Join(", ", Instance.actionElements.Effects.Keys));
-            //GuiLoggerProvider.Instance.Log("Effect Test: " + AutomationExtensions.IsElementToggledOn(Instance.actionElements.Effects["2].Enabled));
-
+            catch (Exception e)
+            {
+                GuiLoggerProvider.Instance.Log("Error during loading Elements for UI Automation. Try Reload button.");
+            }
         }
 
         private bool checkForElements(AutomationElement root)
@@ -211,8 +204,8 @@ namespace sfx_100_streamdeck_sfb_extension
                         SimFeedbackFacadeProvider.Instance.DispatcherHelper.Invoke((Action)(() =>
                         {
                             GuiLoggerProvider.Instance.Log("Profile Change detected...");
-                            SimFeedbackInvoker.Instance.SelectProfileTab();
-                            SimFeedbackInvoker.Instance.LoadElements();
+                            Instance.SelectProfileTab();
+                            Instance.LoadElements();
                         }));
 
                     }
@@ -223,13 +216,6 @@ namespace sfx_100_streamdeck_sfb_extension
                 GuiLoggerProvider.Instance.Log("Error during loading of AddProfileChangeDetector: " + ex.Message);
             }
         }
-
-
-        private void OnStructureChanged(object sender, StructureChangedEventArgs e)
-        {
-
-        }
-
 
         private static void GetActiveProfileEffects()
         {
@@ -288,8 +274,6 @@ namespace sfx_100_streamdeck_sfb_extension
             {
 
                 // Verfügbare Controller laden
-
-                
                 string xmlContentsSfbXml = File.ReadAllText(pathSFbXml);
 
                 var xmlControllerStartStringId = "<MotionControllerList>";
@@ -316,7 +300,6 @@ namespace sfx_100_streamdeck_sfb_extension
             }
 
         }
-
 
         private static void loadEffects(AutomationElement root)
         {
@@ -359,16 +342,6 @@ namespace sfx_100_streamdeck_sfb_extension
                     var checkBoxMute = effectPanel.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "muteCheckBox"));
                     effectActionElement.Muted = checkBoxMute;
 
-
-                    /*
-                    var cb = pane.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.CheckBox));
-                    TogglePattern tp = (TogglePattern)cb.GetCurrentPattern(TogglePattern.Pattern);
-                    if (tp.Current.ToggleState != ToggleState.On) // not on? click it
-                    {
-                        ((InvokePattern)cb.GetCurrentPattern(InvokePattern.Pattern)).Invoke();
-                    }
-                    */
-
                     GuiLoggerProvider.Instance.Log("Add Effect: " + effectActionElement.Name);
                     Instance.actionElements.Effects.Add(effectActionElement.Name, effectActionElement);
                     i++;
@@ -385,7 +358,6 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             try
             {
-                //Retrieve the element via FindFirst(best practice)
                 var elt = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "tableLayoutPanel1"));
 
                 var trackBarOverallIntensity = elt.FindFirst(TreeScope.Subtree,
@@ -413,9 +385,6 @@ namespace sfx_100_streamdeck_sfb_extension
         private static void loadControllerObjects(AutomationElement root)
         {
             Instance.actionElements.Controllers.Clear();
-
-            //Retrieve the element via FindFirst(best practice)
-
             
             try
             {
@@ -529,38 +498,7 @@ namespace sfx_100_streamdeck_sfb_extension
             }
           
         }
-
-        public void CheckProfile()
-        {
-            GuiLoggerProvider.Instance.Log("Profile Panel found1: " + Instance.profilePanel.Current.Name);
-            GuiLoggerProvider.Instance.Log("Profile Panel found2: " + Instance.profilePanel.Current.AutomationId);
-            GuiLoggerProvider.Instance.Log("Profile Panel found3: " + Instance.profilePanel.Current.NativeWindowHandle);
-            GuiLoggerProvider.Instance.Log("Profile Panel found4: " + Instance.profilePanel.Current.IsContentElement);
-            GuiLoggerProvider.Instance.Log("Profile Panel found5: " + Instance.profilePanel.Current.IsControlElement);
-            GuiLoggerProvider.Instance.Log("Profile Panel found6: " + Instance.profilePanel.Current.ItemStatus);
-            GuiLoggerProvider.Instance.Log("Profile Panel found7: " + Instance.profilePanel.Current.ItemType);
-
-            Task.Delay(2000).ContinueWith(t => checkChilds());
-
-            GuiLoggerProvider.Instance.Log("Profile Panel found8: Childs?");
-            //AutomationElement elementNode = TreeWalker.ControlViewWalker.GetFirstChild(Instance.profilePanel);
-            //GuiLoggerProvider.Instance.Log("Profile Panel child1: " + elementNode.Current.NativeWindowHandle);
-            //GuiLoggerProvider.Instance.Log("Profile Panel child2: " + elementNode.Current.Name);
-
-        }
-
-        public void checkChilds()
-        {
-
-            AutomationElement elementNode = TreeWalker.ControlViewWalker.GetFirstChild(Instance.profilePanel);
-
-            while (elementNode != null)
-            {
-                GuiLoggerProvider.Instance.Log("Profile Panel child1: " + elementNode.Current.NativeWindowHandle);
-                GuiLoggerProvider.Instance.Log("Profile Panel child2: " + elementNode.Current.Name);
-            }
-        }
-
+        
         public async Task LoadWithDelay()
         {
             await Task.Delay(Settings.Default.UIAutomationDelay);

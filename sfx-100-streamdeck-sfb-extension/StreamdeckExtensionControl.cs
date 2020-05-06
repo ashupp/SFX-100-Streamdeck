@@ -20,7 +20,6 @@ namespace sfx_100_streamdeck_sfb_extension
 
 
             InitializeComponent();
-            SimFeedbackFacadeProvider.Instance.ExtensionWinFormsGui = this;
             GuiLoggerProvider.Instance.LogBox =  _streamdeckExtensionControlGui1.debugBox;
         }
 
