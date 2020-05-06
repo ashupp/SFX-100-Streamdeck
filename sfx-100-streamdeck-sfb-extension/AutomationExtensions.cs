@@ -18,6 +18,24 @@ namespace sfx_100_streamdeck_sfb_extension
             range.SetValue(theValue);
         }
 
+        // This will bring the window to front if it is in normal or maximized state. Using Win32 Click instead
+        public static void ChangeCheckBoxState(AutomationElement element)
+        {
+            TogglePattern targetInvokePattern = element.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+            if (targetInvokePattern == null)
+                return;
+            targetInvokePattern.Toggle();
+        }
+
+        // Currently Unused
+        public static void InvokeElement(AutomationElement element)
+        {
+            InvokePattern targetInvokePattern = element.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+            if (targetInvokePattern == null)
+                return;
+            targetInvokePattern.Invoke();
+        }
+
         public static bool IsElementToggledOn(AutomationElement element)
         {
             if (element == null)

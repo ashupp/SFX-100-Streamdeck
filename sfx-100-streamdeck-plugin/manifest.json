@@ -47,7 +47,7 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Disable All Effects",
       "UUID": "sfx-100-streamdeck-plugin.disablealleffects",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "PropertyInspectorPath": "PropertyInspector/EnableDisableAllEffects.html"
     },
     {
       "Icon": "Images/icon",
@@ -64,7 +64,7 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Enable All Effects",
       "UUID": "sfx-100-streamdeck-plugin.enablealleffects",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "PropertyInspectorPath": "PropertyInspector/EnableDisableAllEffects.html"
     },
     {
       "Icon": "Images/icon",
@@ -242,7 +242,41 @@
     },
 
 
+    {
+      "Icon": "Images/icon",
+      "Name": "Enable Controller Property",
+      "States": [
+        {
+          "Name": "Enable",
+          "Title": "",
+          "Image": "Images/PropertyEnable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Enable Controller Property",
+      "UUID": "sfx-100-streamdeck-plugin.enablecontrollerproperty",
+      "PropertyInspectorPath": "PropertyInspector/EnableControllerProperty.html"
+    },
 
+    {
+      "Icon": "Images/icon",
+      "Name": "Disable Controller Property",
+      "States": [
+        {
+          "Name": "Disable",
+          "Title": "",
+          "Image": "Images/PropertyDisable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable Controller Property",
+      "UUID": "sfx-100-streamdeck-plugin.disablecontrollerproperty",
+      "PropertyInspectorPath": "PropertyInspector/DisableControllerProperty.html"
+    },
 
 
 
@@ -337,7 +371,7 @@
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.2.2",
+  "Version": "0.0.2.3",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

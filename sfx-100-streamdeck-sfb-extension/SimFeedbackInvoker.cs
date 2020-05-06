@@ -2,18 +2,11 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Automation;
-using System.Windows.Interop;
-using System.Windows.Threading;
 using System.Xml.Linq;
 using WpfApp2;
-using Condition = System.Windows.Automation.Condition;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -43,21 +36,8 @@ namespace sfx_100_streamdeck_sfb_extension
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, [Out] StringBuilder lParam);
 
-
-
-
-        public static string GetWindowTextRaw(IntPtr hwnd)
-        {
-            // Allocate correct string length first
-            int length = (int)SendMessage(hwnd, (int) WM_GETTEXTLENGTH, 0, 0);
-            StringBuilder sb = new StringBuilder(length + 1);
-            SendMessage(hwnd, WM_GETTEXT, (IntPtr)sb.Capacity, sb);
-            return sb.ToString();
-        }
-
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
-
 
 
         [DllImport("user32.dll")]
@@ -70,14 +50,7 @@ namespace sfx_100_streamdeck_sfb_extension
 
         public enum WMessages : uint
         {
-            WM_LBUTTONDOWN = 0x201, //Left mousebutton down
-            WM_LBUTTONUP = 0x202,   //Left mousebutton up
-            WM_LBUTTONDBLCLK = 0x203, //Left mousebutton doubleclick
-            WM_RBUTTONDOWN = 0x204, //Right mousebutton down
-            WM_RBUTTONUP = 0x205,   //Right mousebutton up
-            WM_RBUTTONDBLCLK = 0x206, //Right mousebutton do
-
-
+            BM_CLICK = 0x00F5,          // Click like on a Button
 
             TBM_GETRANGEMAX = 0x0402,   // Get max range
             TBM_GETRANGEMIN = 0x0401,   // Get min range
@@ -89,8 +62,7 @@ namespace sfx_100_streamdeck_sfb_extension
 
         public void ClickElement(IntPtr hwndChild)
         {
-            SendMessage(hwndChild, (uint)WMessages.WM_LBUTTONDOWN, 0, 0);
-            SendMessage(hwndChild, (uint)WMessages.WM_LBUTTONUP, 0, 0);
+            SendMessage(hwndChild, (uint)WMessages.BM_CLICK, 0, 0);
         }
 
         public int GetSliderMinRange(IntPtr hwndChild)

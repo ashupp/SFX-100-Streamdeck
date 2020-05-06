@@ -14,6 +14,7 @@ namespace sfx_100_streamdeck_sfb_extension
             return true;
         }
 
+        #region Running / TelemetryProvider States
         public bool IsRunning()
         {
             GuiLoggerProvider.Instance.Log("Incoming Command: IsRunning");
@@ -31,7 +32,9 @@ namespace sfx_100_streamdeck_sfb_extension
             GuiLoggerProvider.Instance.Log("Returning: " + isTelemetryProviderConnected);
             return isTelemetryProviderConnected;
         }
+        #endregion
 
+        #region Start / Stop Motion
         public bool StartMotion()
         {
             try
@@ -59,7 +62,9 @@ namespace sfx_100_streamdeck_sfb_extension
                 return false;
             }
         }
+        #endregion
 
+        #region All Effects Enable / Disable
         public bool EnableAllEffects()
         {
             try
@@ -87,7 +92,9 @@ namespace sfx_100_streamdeck_sfb_extension
                 return false;
             }
         }
+        #endregion
 
+        #region OverallIntensity
         public bool IncrementOverallIntensity(int steps)
         {
             try
@@ -132,7 +139,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.BtnResetOverallIntensity.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Intensity of Controller
         public void ControllerIntensityIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
@@ -160,7 +169,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].IntensityResetButton.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Smoothing of Controller
         public void ControllerSmoothnessIncrement(string controllerName, int steps)
         {
             var currVal =SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
@@ -208,7 +219,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Acceleration of Controller
         public void ControllerAccelerationIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
@@ -230,7 +243,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Min Speed of Controller
         public void ControllerMinSpeedIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
@@ -252,7 +267,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Max Speed of Controller
         public void ControllerMaxSpeedIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
@@ -274,7 +291,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Slider Smothing of Effect
         public void EffectSmoothingIncrement(string effectName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
@@ -296,7 +315,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Slider Intensity of Effect
         public void EffectIntensityIncrement(string effectName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
@@ -330,7 +351,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Linear Property of Effect
         public bool EffectLinearIsEnabled(string effectName)
         {
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated);
@@ -356,7 +379,9 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Enabled Property of Effect
         public bool EffectIsEnabled(string effectName)
         {
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled);
@@ -383,7 +408,9 @@ namespace sfx_100_streamdeck_sfb_extension
 
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
         }
+        #endregion
 
+        #region Mute Property of Effect
         public bool EffectIsMuted(string effectName)
         {
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted);
@@ -409,5 +436,6 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
         }
+        #endregion
     }
 }
