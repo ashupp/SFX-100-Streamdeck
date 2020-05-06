@@ -42,6 +42,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
                 settings = PluginSettings.CreateDefaultSettings();
+                SaveSettings();
             }
             else
             {
