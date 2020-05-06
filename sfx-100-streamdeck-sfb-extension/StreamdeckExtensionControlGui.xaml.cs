@@ -28,15 +28,11 @@ namespace sfx_100_streamdeck_sfb_extension
             DataContext = this;
 
             GuiLoggerProvider.Instance.Log("Init Extension GUI");
-            LoadWithDelay();
+            SimFeedbackFacadeProvider.Instance.DispatcherHelper = this.Dispatcher;
+            SimFeedbackInvoker.Instance.LoadWithDelay();
         }
 
-        async Task LoadWithDelay()
-        {
-            await Task.Delay(Settings.Default.UIAutomationDelay);
-            GuiLoggerProvider.Instance.Log("Load UIAutomation with delay..." + Settings.Default.UIAutomationDelay);
-            SimFeedbackInvoker.Instance.LoadElements();
-        }
+
 
         #endregion
 
@@ -121,11 +117,10 @@ namespace sfx_100_streamdeck_sfb_extension
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             GuiLoggerProvider.Instance.Log("Change Tab and load UI Automation");
-            SimFeedbackInvoker.Instance.SelectProfileTab();
-            SimFeedbackInvoker.Instance.LoadElements();
+            await SimFeedbackInvoker.Instance.LoadWithDelay();
             GuiLoggerProvider.Instance.Log("End Change Tab and load UI Automation ");
         }
     }

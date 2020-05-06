@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -16,5 +18,8 @@ namespace sfx_100_streamdeck_sfb_extension
 
 
         public SimFeedback.extension.SimFeedbackExtensionFacade SimFeedbackFacade;
+
+        public StreamdeckExtensionControl ExtensionWinFormsGui { get; set; }
+        public Dispatcher DispatcherHelper { get; set; }
     }
 }

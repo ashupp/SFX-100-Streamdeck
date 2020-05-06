@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using sfx_100_streamdeck_pipecontract;
 using WpfApp2;
 
+
 namespace sfx_100_streamdeck_sfb_extension
 {
     public class StreamdeckExtension : AbstractSimFeedbackExtension
