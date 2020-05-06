@@ -17,12 +17,13 @@ namespace sfx_100_streamdeck_sfb_extension
             _streamdeckExtension = ext;
             _simFeedbackFacade = simFeedbackFacade;
             SimFeedbackFacadeProvider.Instance.SimFeedbackFacade = simFeedbackFacade;
-            
-            InitializeComponent();
 
+
+            InitializeComponent();
             GuiLoggerProvider.Instance.LogBox =  _streamdeckExtensionControlGui1.debugBox;
         }
 
+     
 
         public void Start()
         {
@@ -37,6 +38,39 @@ namespace sfx_100_streamdeck_sfb_extension
             isStarted = false;
             _streamdeckExtension.SetIsRunning(false);
             //throw new NotImplementedException();
+        }
+
+        public async void LogQchanged(object sender, EventArgs e)
+        {
+           
+            //if (InvokeRequired)
+            //{
+            //    Invoke((MethodInvoker) async delegate
+            //    {
+
+            //        try
+            //        {
+            //            //await SimFeedbackInvoker.Instance.LoadWithDelay();
+            //            await SimFeedbackFacadeProvider.Instance.DispatcherHelper.BeginInvoke((Action) (() =>
+            //            {
+            //                GuiLoggerProvider.Instance.Log("Log vom LogQchanged als Invoked");
+            //                SimFeedbackInvoker.Instance.LoadElements();
+            //                GuiLoggerProvider.Instance.Log("Loaded als Invoked");
+            //            }));
+            //        }
+            //        catch (Exception exception)
+            //        {
+            //            SentrySdk.CaptureException(exception);
+            //            GuiLoggerProvider.Instance.Log("Error in Invoked: " + exception);
+            //        }
+            //    });
+            //    return;
+            //}
+            //await SimFeedbackFacadeProvider.Instance.DispatcherHelper.BeginInvoke((Action)(() =>
+            //{
+            //    SimFeedbackInvoker.Instance.LoadElements();
+            //    GuiLoggerProvider.Instance.Log("Log vom LogQchanged mit direct access");
+            //}));
         }
 
         private void ParentForm_KeyDown(object sender, KeyEventArgs e)

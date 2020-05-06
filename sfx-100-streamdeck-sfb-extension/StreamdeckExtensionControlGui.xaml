@@ -8,15 +8,16 @@
              Unloaded="StreamdeckExtensionControlGUI_OnUnloaded"
              Loaded="StreamdeckExtensionControlGUI_OnLoaded"
              x:Name="StreamdeckExtensionControlGuiElement"
-             mc:Ignorable="d" Height="273.449" Width="1226.643" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-    <Grid VerticalAlignment="Top" Height="282" Width="Auto" Margin="0,0,0.5,0">
+             mc:Ignorable="d" Height="432.395" Width="1226.643" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+    <Grid VerticalAlignment="Top" Height="422" Width="Auto" Margin="0,0,1,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="streamdeckExtensionTitle" Content="Streamdeck Extension" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"><Hyperlink NavigateUri="https://github.com/ashupp/SFX-100-Streamdeck" RequestNavigate="Hyperlink_OnRequestNavigate" ><Run Text="https://github.com/ashupp/SFX-100-Streamdeck"/></Hyperlink></TextBlock>
-        <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" Margin="10,86,598,10"/>
-        <Button Content="Save Log" HorizontalAlignment="Left" Margin="358,38,0,0" VerticalAlignment="Top" Width="133" Click="Button_Click"/>
+        <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" Margin="10,86,557,10"/>
+        <Button Content="Save Log" HorizontalAlignment="Left" Margin="398,38,0,0" VerticalAlignment="Top" Width="133" Click="Button_Click"/>
+        <Button Content="Reload Profile Data" HorizontalAlignment="Left" Margin="536,38,0,0" VerticalAlignment="Top" Width="133" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Threading;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -16,5 +17,7 @@ namespace sfx_100_streamdeck_sfb_extension
 
 
         public SimFeedback.extension.SimFeedbackExtensionFacade SimFeedbackFacade;
+
+        public Dispatcher DispatcherHelper { get; set; }
     }
 }

@@ -36,23 +36,26 @@ namespace sfx_100_streamdeck_sfb_extension
         #endregion
 
 
-
         /// <summary>
         /// Simple logging to window. Holds only limited entries to prevent scrolling
         /// </summary>
         /// <param name="logEntry">Object to log</param>
         public void Log(object logEntry)
         {
-            if (LogBox != null)
+            lock (syncRoot)
             {
-                if (LogBox.Items.Count >= 1000)
+                
+                if (LogBox != null)
                 {
-                    LogBox.Items.RemoveAt(0);
-                }
+                    if (LogBox.Items.Count >= 1000)
+                    {
+                        LogBox.Items.RemoveAt(0);
+                    }
 
-                LogBox.Items.Add(DateTime.Now + ": " + logEntry);
-                LogBox.SelectedIndex = LogBox.Items.Count - 1;
-                LogBox.ScrollIntoView(LogBox.SelectedItem);
+                    LogBox.Items.Add(DateTime.Now + ": " + logEntry);
+                    LogBox.SelectedIndex = LogBox.Items.Count - 1;
+                    LogBox.ScrollIntoView(LogBox.SelectedItem);
+                }
             }
         }
     }

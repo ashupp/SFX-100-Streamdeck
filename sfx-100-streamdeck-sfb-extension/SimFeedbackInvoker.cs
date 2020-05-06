@@ -4,8 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Automation;
 using System.Xml.Linq;
+using sfx_100_streamdeck_sfb_extension.Properties;
 using WpfApp2;
 
 namespace sfx_100_streamdeck_sfb_extension
@@ -30,6 +33,7 @@ namespace sfx_100_streamdeck_sfb_extension
         private const int IDOK = 1;
         private const UInt32 WM_GETTEXTLENGTH = 0x000E;
         private const UInt32 WM_GETTEXT = 0x000D;
+        public AutomationElement profilePanel;
 
         private Process _currProcess;
 
@@ -95,45 +99,123 @@ namespace sfx_100_streamdeck_sfb_extension
 
         public void LoadElements()
         {
-            GuiLoggerProvider.Instance.Log("Loading Elements for UI Automation");
 
-            //var mainWindowHandle = GetHandleWindow("SimFeedback - 00.09.08");
-            _currProcess = Process.GetCurrentProcess();
-            var mainWindowHandle = _currProcess.MainWindowHandle;
-
-            GuiLoggerProvider.Instance.Log("Aktuelles Window handle: " + mainWindowHandle);
-
-            actionElements = new ActionElements();
-
-
-
-            if ((int)mainWindowHandle != 0)
+            try
             {
+                GuiLoggerProvider.Instance.Log("Loading Elements for UI Automation");
 
-                GuiLoggerProvider.Instance.Log("Loading..");
-                var root = AutomationElement.FromHandle(mainWindowHandle);
+                //var mainWindowHandle = GetHandleWindow("SimFeedback - 00.09.08");
+                _currProcess = Process.GetCurrentProcess();
+                var mainWindowHandle = _currProcess.MainWindowHandle;
 
-                GuiLoggerProvider.Instance.Log("root?: " + root.Current.Name);
+                GuiLoggerProvider.Instance.Log("Aktuelles Window handle: " + mainWindowHandle);
 
-                GetActiveProfileEffects();
-
-                loadEffects(root);
-
-                loadControllerObjects(root);
-
-                loadEffectOverallSettings(root);
+                actionElements = new ActionElements();
 
 
-                
+                if ((int)mainWindowHandle != 0)
+                {
+
+                    GuiLoggerProvider.Instance.Log("Loading..");
+                    
+                    
+                    AutomationElement root = AutomationElement.FromHandle(mainWindowHandle);
+
+                    GuiLoggerProvider.Instance.Log("Root Elem: " + root.Current.Name);
+
+
+                    root = AutomationElement.FromHandle(mainWindowHandle);
+                    //Instance.profilePanel = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "groupBox2"));
+                    Instance.profilePanel = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "profileView"));
+
+                    Instance.actionElements = new ActionElements();
+
+                    GetActiveProfileEffects();
+
+                    loadEffects(root);
+
+                    loadControllerObjects(root);
+
+                    loadEffectOverallSettings(root);
+
+                    AddProfileChangeDetector();
+                }
+
+                GuiLoggerProvider.Instance.Log("Controller keys available: " + String.Join(", ", Instance.actionElements.Controllers.Keys));
+                GuiLoggerProvider.Instance.Log("Effect keys available: " + String.Join(", ", Instance.actionElements.Effects.Keys));
+                GuiLoggerProvider.Instance.Log("Finished Loading Elements for UI Automation");
             }
-
-            GuiLoggerProvider.Instance.Log("Finished Loading Elements for UI Automation");
-            GuiLoggerProvider.Instance.Log("Controller keys available: " + String.Join(", ", Instance.actionElements.Controllers.Keys));
-            GuiLoggerProvider.Instance.Log("Effect keys available: " + String.Join(", ", Instance.actionElements.Effects.Keys));
-            //GuiLoggerProvider.Instance.Log("Effect Test: " + AutomationExtensions.IsElementToggledOn(Instance.actionElements.Effects["2].Enabled));
-
+            catch (Exception e)
+            {
+                GuiLoggerProvider.Instance.Log("Error during loading Elements for UI Automation. Try Reload button.");
+            }
         }
 
+        private bool checkForElements(AutomationElement root)
+        {
+
+            AutomationElementCollection effectPanels = null;
+            AutomationElementCollection controllerConfigControls = null;
+            AutomationElement elt = null;
+            int checkCounter = 0;
+            do
+            {
+                GuiLoggerProvider.Instance.Log("Checking availability of AutomationElements...");
+
+                // Effekte
+                effectPanels = root.FindAll(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "ChartControl"));
+                // Das hier sind die Einstellungen pro Effekt
+
+
+                // Controller 
+                elt = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "tableLayoutPanel1"));
+                if (elt != null)
+                {
+                    controllerConfigControls = elt.FindAll(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "ControllerConfigControl"));
+                }
+
+
+                GuiLoggerProvider.Instance.Log("Finished availability of AutomationElements...");
+             Thread.Sleep(500);
+                checkCounter++;
+
+            } while ((effectPanels == null || elt == null || controllerConfigControls == null) && checkCounter < 10);
+           
+            if (effectPanels != null && elt != null && controllerConfigControls != null)
+            {
+                GuiLoggerProvider.Instance.Log("AutomationElements found...");
+                return true;
+            }
+
+            GuiLoggerProvider.Instance.Log("Error: No AutomationElements found...");
+            return false;
+        }
+
+        private void AddProfileChangeDetector()
+        {
+            try
+            {
+                Automation.AddStructureChangedEventHandler(Instance.profilePanel, TreeScope.Element, async delegate (object o, StructureChangedEventArgs args)
+                {
+                    AutomationElement element = o as AutomationElement;
+
+                    if (args.StructureChangeType == StructureChangeType.ChildRemoved)
+                    {
+                        SimFeedbackFacadeProvider.Instance.DispatcherHelper.Invoke((Action)(() =>
+                        {
+                            GuiLoggerProvider.Instance.Log("Profile Change detected...");
+                            Instance.SelectProfileTab();
+                            Instance.LoadElements();
+                        }));
+
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                GuiLoggerProvider.Instance.Log("Error during loading of AddProfileChangeDetector: " + ex.Message);
+            }
+        }
 
         private static void GetActiveProfileEffects()
         {
@@ -192,8 +274,6 @@ namespace sfx_100_streamdeck_sfb_extension
             {
 
                 // Verfügbare Controller laden
-
-                
                 string xmlContentsSfbXml = File.ReadAllText(pathSFbXml);
 
                 var xmlControllerStartStringId = "<MotionControllerList>";
@@ -221,21 +301,19 @@ namespace sfx_100_streamdeck_sfb_extension
 
         }
 
-
         private static void loadEffects(AutomationElement root)
         {
-            Instance.actionElements.Effects.Clear();
-
-            //WalkControlElements(root);
-            var effectPanels = root.FindAll(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "ChartControl"));
-            
-            // Das hier sind die Einstellungen pro Effekt
-
-            GuiLoggerProvider.Instance.Log("Effects found: " + effectPanels.Count);
-
-
             try
             {
+                Instance.actionElements.Effects.Clear();
+
+                //WalkControlElements(root);
+                var effectPanels = root.FindAll(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "ChartControl"));
+
+                // Das hier sind die Einstellungen pro Effekt
+
+                GuiLoggerProvider.Instance.Log("Effects found: " + effectPanels.Count);
+
                 int i = 0;
                 foreach (AutomationElement effectPanel in effectPanels)
                 {
@@ -264,16 +342,6 @@ namespace sfx_100_streamdeck_sfb_extension
                     var checkBoxMute = effectPanel.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "muteCheckBox"));
                     effectActionElement.Muted = checkBoxMute;
 
-
-                    /*
-                    var cb = pane.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.CheckBox));
-                    TogglePattern tp = (TogglePattern)cb.GetCurrentPattern(TogglePattern.Pattern);
-                    if (tp.Current.ToggleState != ToggleState.On) // not on? click it
-                    {
-                        ((InvokePattern)cb.GetCurrentPattern(InvokePattern.Pattern)).Invoke();
-                    }
-                    */
-
                     GuiLoggerProvider.Instance.Log("Add Effect: " + effectActionElement.Name);
                     Instance.actionElements.Effects.Add(effectActionElement.Name, effectActionElement);
                     i++;
@@ -288,48 +356,50 @@ namespace sfx_100_streamdeck_sfb_extension
 
         private void loadEffectOverallSettings(AutomationElement root)
         {
-            //Retrieve the element via FindFirst(best practice)
-            var elt = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "tableLayoutPanel1"));
+            try
+            {
+                var elt = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "tableLayoutPanel1"));
 
-            var trackBarOverallIntensity = elt.FindFirst(TreeScope.Subtree,
-                new PropertyCondition(AutomationElement.AutomationIdProperty, "trackBarOverallIntensity"));
-            actionElements.OverallIntensity = trackBarOverallIntensity;
+                var trackBarOverallIntensity = elt.FindFirst(TreeScope.Subtree,
+                    new PropertyCondition(AutomationElement.AutomationIdProperty, "trackBarOverallIntensity"));
+                actionElements.OverallIntensity = trackBarOverallIntensity;
 
-            var buttonResetOverallIntensity = elt.FindFirst(TreeScope.Subtree,
-                new PropertyCondition(AutomationElement.AutomationIdProperty, "button3"));
-            actionElements.BtnResetOverallIntensity = buttonResetOverallIntensity;
+                var buttonResetOverallIntensity = elt.FindFirst(TreeScope.Subtree,
+                    new PropertyCondition(AutomationElement.AutomationIdProperty, "button3"));
+                actionElements.BtnResetOverallIntensity = buttonResetOverallIntensity;
 
-            var buttonEnableAllEffects = elt.FindFirst(TreeScope.Subtree,
-                new PropertyCondition(AutomationElement.AutomationIdProperty, "buttonEnableAllEffects"));
-            actionElements.BtnEnableAllEffects = buttonEnableAllEffects;
+                var buttonEnableAllEffects = elt.FindFirst(TreeScope.Subtree,
+                    new PropertyCondition(AutomationElement.AutomationIdProperty, "buttonEnableAllEffects"));
+                actionElements.BtnEnableAllEffects = buttonEnableAllEffects;
 
-            var buttonDisableAllEffects = elt.FindFirst(TreeScope.Subtree,
-                new PropertyCondition(AutomationElement.AutomationIdProperty, "buttonDisableAllEffects"));
-            actionElements.BtnDisableAllEffects = buttonDisableAllEffects;
+                var buttonDisableAllEffects = elt.FindFirst(TreeScope.Subtree,
+                    new PropertyCondition(AutomationElement.AutomationIdProperty, "buttonDisableAllEffects"));
+                actionElements.BtnDisableAllEffects = buttonDisableAllEffects;
+            }
+            catch (Exception e)
+            {
+                GuiLoggerProvider.Instance.Log("Error during loading of OverallSettings: " + e.Message);
+            }
         }
 
         private static void loadControllerObjects(AutomationElement root)
         {
             Instance.actionElements.Controllers.Clear();
-
-            //Retrieve the element via FindFirst(best practice)
-            var elt = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "tableLayoutPanel1"));
-
-            var controllerConfigControls = elt.FindAll(TreeScope.Subtree,
-                new PropertyCondition(AutomationElement.AutomationIdProperty, "ControllerConfigControl"));
-
-          
-
-            GuiLoggerProvider.Instance.Log("Controllers found: " + controllerConfigControls.Count);
-
+            
             try
             {
+                var elt = root.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "tableLayoutPanel1"));
+                var controllerConfigControls = elt.FindAll(TreeScope.Subtree, new PropertyCondition(AutomationElement.AutomationIdProperty, "ControllerConfigControl"));
+
+
+                GuiLoggerProvider.Instance.Log("Controllers found: " + controllerConfigControls.Count);
+
                 int i = 0;
                 // Alle Controller
                 foreach (AutomationElement controllerConfigControl in controllerConfigControls)
                 {
                     ControllerActionElement controllerActionElements = new ControllerActionElement();
-                    // Controller name
+                    // Controller name            GuiLoggerProvider.Instance.Log("Checking availability of AutomationElements...");
 
                     var controllerName = controllerConfigControl.FindFirst(TreeScope.Children,
                         new PropertyCondition(AutomationElement.AutomationIdProperty, "labelIdType"));
@@ -427,6 +497,17 @@ namespace sfx_100_streamdeck_sfb_extension
                 GuiLoggerProvider.Instance.Log("Tab selected");
             }
           
+        }
+        
+        public async Task LoadWithDelay()
+        {
+            await Task.Delay(Settings.Default.UIAutomationDelay);
+            GuiLoggerProvider.Instance.Log("Load UIAutomation with delay..." + Settings.Default.UIAutomationDelay);
+            await SimFeedbackFacadeProvider.Instance.DispatcherHelper.BeginInvoke((Action)(() =>
+            {
+                SimFeedbackInvoker.Instance.SelectProfileTab();
+                Instance.LoadElements();
+            }));
         }
     }
 }
