@@ -24,6 +24,7 @@ namespace sfx_100_streamdeck_sfb_extension
         {
 
             InitializeComponent();
+            debugBox.Visibility = Visibility.Collapsed;
             streamdeckExtensionTitle.Content = streamdeckExtensionTitle.Content + " - " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             DataContext = this;
 
@@ -122,6 +123,20 @@ namespace sfx_100_streamdeck_sfb_extension
             GuiLoggerProvider.Instance.Log("Change Tab and load UI Automation");
             await SimFeedbackInvoker.Instance.LoadWithDelay();
             GuiLoggerProvider.Instance.Log("End Change Tab and load UI Automation ");
+        }
+
+        private void chkLogging_Checked(object sender, RoutedEventArgs e)
+        {
+            GuiLoggerProvider.Instance.LoggingEnabled = true;
+            GuiLoggerProvider.Instance.LogBox.Visibility = Visibility.Visible;
+            GuiLoggerProvider.Instance.Log("Logging enabled");
+        }
+
+        private void chkLogging_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GuiLoggerProvider.Instance.LoggingEnabled = false;
+            GuiLoggerProvider.Instance.LogBox.Items.Clear();
+            GuiLoggerProvider.Instance.LogBox.Visibility = Visibility.Hidden;
         }
     }
 }

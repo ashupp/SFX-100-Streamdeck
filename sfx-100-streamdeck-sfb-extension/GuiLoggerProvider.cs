@@ -1,4 +1,5 @@
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -32,6 +33,7 @@ namespace sfx_100_streamdeck_sfb_extension
         }
 
         public ListBox LogBox { get; set; }
+        public bool LoggingEnabled = false;
 
         #endregion
 
@@ -42,6 +44,8 @@ namespace sfx_100_streamdeck_sfb_extension
         /// <param name="logEntry">Object to log</param>
         public void Log(object logEntry)
         {
+            if (!Instance.LoggingEnabled)
+                return;
             lock (syncRoot)
             {
                 
