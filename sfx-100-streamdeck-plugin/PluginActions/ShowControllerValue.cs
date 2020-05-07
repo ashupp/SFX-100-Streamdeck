@@ -99,7 +99,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             }
             catch (Exception ex)
             {
-                Logger.Instance.LogMessage(TracingLevel.ERROR, $"OnTick error: {ex}");
+                // Empty because of spamming if pipe not accessible :)
             }
         }
 

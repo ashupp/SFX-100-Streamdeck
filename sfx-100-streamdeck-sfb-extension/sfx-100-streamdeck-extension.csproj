@@ -117,6 +117,7 @@
     <ProjectReference Include="..\sfx-100-streamdeck-pipecontract\sfx-100-streamdeck-pipecontract.csproj">
       <Project>{0dd43943-2b44-489d-8478-75c5b2f87e8c}</Project>
       <Name>sfx-100-streamdeck-pipecontract</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
