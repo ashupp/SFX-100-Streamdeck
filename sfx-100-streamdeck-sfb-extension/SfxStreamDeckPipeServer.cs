@@ -95,39 +95,44 @@ namespace sfx_100_streamdeck_sfb_extension
         #endregion
 
         #region OverallIntensity
-        public bool IncrementOverallIntensity(int steps)
+        public int IncrementOverallIntensity(int steps)
         {
             try
             {
                 GuiLoggerProvider.Instance.Log("Incoming Command: IncrementOverallIntensity by " + steps);
                 for (var i = steps - 1; i >= 0; i--)
+                {
                     SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.IncrementOverallIntensity();
-                return true;
+                }
+                return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
             }
             catch
             {
-                return false;
+                return -1;
             }
         }
 
-        public bool DecrementOverallIntensity(int steps)
+        public int DecrementOverallIntensity(int steps)
         {
             try
             {
                 GuiLoggerProvider.Instance.Log("Incoming Command: DecrementOverallIntensity by " + steps);
                 for (var i = steps - 1; i >= 0; i--)
+                {
                     SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.DecrementOverallIntensity();
-                return true;
+                }
+                return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
             }
             catch
             {
-                return false;
+                return -1;
             }
         }
 
-        public void SetOverallIntensity(int value)
+        public int SetOverallIntensity(int value)
         {
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr) SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle,value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
         }
 
         public int GetOverallIntensity()
@@ -135,29 +140,35 @@ namespace sfx_100_streamdeck_sfb_extension
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
         }
 
-        public void ResetOverallIntensity()
+        public int ResetOverallIntensity()
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.BtnResetOverallIntensity.Current.NativeWindowHandle);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
         }
         #endregion
 
         #region Intensity of Controller
-        public void ControllerIntensityIncrement(string controllerName, int steps)
+        public int ControllerIntensityIncrement(string controllerName, int steps)
         {
-            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
-            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle, currVal + steps);
+            var hWnd = (IntPtr) SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle;
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue(hWnd, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
         }
 
-        public void ControllerIntensityDecrement(string controllerName, int steps)
+        public int ControllerIntensityDecrement(string controllerName, int steps)
         {
-            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
-            SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle, currVal - steps);
+            var hWnd = (IntPtr) SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle;
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue(hWnd, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
         }
 
-        public void ControllerIntensitySet(string controllerName, int value)
+        public int ControllerIntensitySet(string controllerName, int value)
         {
             GuiLoggerProvider.Instance.Log("Incoming Command: ControllerIntensitySet " + controllerName + " -- " + value);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
         }
 
         public int ControllerIntensityGet(string controllerName)
@@ -165,28 +176,32 @@ namespace sfx_100_streamdeck_sfb_extension
             return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr) SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
         }
 
-        public void ControllerIntensityReset(string controllerName)
+        public int ControllerIntensityReset(string controllerName)
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].IntensityResetButton.Current.NativeWindowHandle);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Intensity.Current.NativeWindowHandle);
         }
         #endregion
 
         #region Smoothing of Controller
-        public void ControllerSmoothnessIncrement(string controllerName, int steps)
+        public int ControllerSmoothnessIncrement(string controllerName, int steps)
         {
             var currVal =SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
         }
 
-        public void ControllerSmoothnessDecrement(string controllerName, int steps)
+        public int ControllerSmoothnessDecrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
         }
 
-        public void ControllerSmoothnessSet(string controllerName, int value)
+        public int ControllerSmoothnessSet(string controllerName, int value)
         {
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Smoothness.Current.NativeWindowHandle);
         }
 
         public int ControllerSmoothnessGet(string controllerName)
@@ -199,44 +214,56 @@ namespace sfx_100_streamdeck_sfb_extension
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled);
         }
 
-        public void ControllerSmoothnessEnable(string controllerName)
+        public bool ControllerSmoothnessEnable(string controllerName)
         {
             if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
+                return true;
             }
+            return false;
         }
 
-        public void ControllerSmoothnessDisable(string controllerName)
+        public bool ControllerSmoothnessDisable(string controllerName)
         {
             if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
+                return false;
             }
+            return true;
         }
 
-        public void ControllerSmoothnessToggle(string controllerName)
+        public bool ControllerSmoothnessToggle(string controllerName)
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled.Current.NativeWindowHandle);
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].SmoothnessEnabled))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
 
         #region Acceleration of Controller
-        public void ControllerAccelerationIncrement(string controllerName, int steps)
+        public int ControllerAccelerationIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
         }
 
-        public void ControllerAccelerationDecrement(string controllerName, int steps)
+        public int ControllerAccelerationDecrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
         }
 
-        public void ControllerAccelerationSet(string controllerName, int value)
+        public int ControllerAccelerationSet(string controllerName, int value)
         {
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].Acceleration.Current.NativeWindowHandle);
         }
 
         public int ControllerAccelerationGet(string controllerName)
@@ -246,21 +273,24 @@ namespace sfx_100_streamdeck_sfb_extension
         #endregion
 
         #region Min Speed of Controller
-        public void ControllerMinSpeedIncrement(string controllerName, int steps)
+        public int ControllerMinSpeedIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
         }
 
-        public void ControllerMinSpeedDecrement(string controllerName, int steps)
+        public int ControllerMinSpeedDecrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
         }
 
-        public void ControllerMinSpeedSet(string controllerName, int value)
+        public int ControllerMinSpeedSet(string controllerName, int value)
         {
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MinSpeed.Current.NativeWindowHandle);
         }
 
         public int ControllerMinSpeedGet(string controllerName)
@@ -270,21 +300,24 @@ namespace sfx_100_streamdeck_sfb_extension
         #endregion
 
         #region Max Speed of Controller
-        public void ControllerMaxSpeedIncrement(string controllerName, int steps)
+        public int ControllerMaxSpeedIncrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
         }
 
-        public void ControllerMaxSpeedDecrement(string controllerName, int steps)
+        public int ControllerMaxSpeedDecrement(string controllerName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
         }
 
-        public void ControllerMaxSpeedSet(string controllerName, int value)
+        public int ControllerMaxSpeedSet(string controllerName, int value)
         {
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Controllers[controllerName].MaxSpeed.Current.NativeWindowHandle);
         }
 
         public int ControllerMaxSpeedGet(string controllerName)
@@ -294,21 +327,24 @@ namespace sfx_100_streamdeck_sfb_extension
         #endregion
 
         #region Slider Smothing of Effect
-        public void EffectSmoothingIncrement(string effectName, int steps)
+        public int EffectSmoothingIncrement(string effectName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
         }
 
-        public void EffectSmoothingDecrement(string effectName, int steps)
+        public int EffectSmoothingDecrement(string effectName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
         }
 
-        public void EffectSmoothingSet(string effectName, int value)
+        public int EffectSmoothingSet(string effectName, int value)
         {
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Smoothing.Current.NativeWindowHandle);
         }
 
         public int EffectSmoothingGet(string effectName)
@@ -318,19 +354,21 @@ namespace sfx_100_streamdeck_sfb_extension
         #endregion
 
         #region Slider Intensity of Effect
-        public void EffectIntensityIncrement(string effectName, int steps)
+        public int EffectIntensityIncrement(string effectName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
         }
 
-        public void EffectIntensityDecrement(string effectName, int steps)
+        public int EffectIntensityDecrement(string effectName, int steps)
         {
             var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
         }
 
-        public void EffectIntensitySet(string effectName, int value)
+        public int EffectIntensitySet(string effectName, int value)
         {
             GuiLoggerProvider.Instance.Log("Incoming Command: EffectIntensitySet " + effectName + " -- " + value);
             if (SimFeedbackInvoker.Instance.actionElements.Effects.ContainsKey(effectName))
@@ -345,6 +383,7 @@ namespace sfx_100_streamdeck_sfb_extension
             }
 
             SimFeedbackInvoker.Instance.SetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle, value);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Intensity.Current.NativeWindowHandle);
         }
 
         public int EffectIntensityGet(string effectName)
@@ -359,25 +398,35 @@ namespace sfx_100_streamdeck_sfb_extension
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated);
         }
 
-        public void EffectLinearEnable(string effectName)
+        public bool EffectLinearEnable(string effectName)
         {
             if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
+                return true;
             }
+            return false;
         }
 
-        public void EffectLinearDisable(string effectName)
+        public bool EffectLinearDisable(string effectName)
         {
             if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
+                return false;
             }
+
+            return true;
         }
 
-        public void EffectLinearToggle(string effectName)
+        public bool EffectLinearToggle(string effectName)
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated.Current.NativeWindowHandle);
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].LinearInterpolated))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
 
@@ -387,26 +436,35 @@ namespace sfx_100_streamdeck_sfb_extension
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled);
         }
 
-        public void EffectEnable(string effectName)
+        public bool EffectEnable(string effectName)
         {
             if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
+                return true;
             }
+
+            return false;
         }
 
-        public void EffectDisable(string effectName)
+        public bool EffectDisable(string effectName)
         {
             if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
+                return false;
             }
+            return true;
         }
 
-        public void EffectToggle(string effectName)
+        public bool EffectToggle(string effectName)
         {
-
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled.Current.NativeWindowHandle);
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Enabled))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
 
@@ -416,25 +474,34 @@ namespace sfx_100_streamdeck_sfb_extension
             return AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted);
         }
 
-        public void EffectMuteEnable(string effectName)
+        public bool EffectMuteEnable(string effectName)
         {
             if (!AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
+                return true;
             }
+            return false;
         }
 
-        public void EffectMuteDisable(string effectName)
+        public bool EffectMuteDisable(string effectName)
         {
             if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted))
             {
                 SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
+                return false;
             }
+            return true;
         }
 
-        public void EffectMuteToggle(string effectName)
+        public bool EffectMuteToggle(string effectName)
         {
             SimFeedbackInvoker.Instance.ClickElement((IntPtr)SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted.Current.NativeWindowHandle);
+            if (AutomationExtensions.IsElementToggledOn(SimFeedbackInvoker.Instance.actionElements.Effects[effectName].Muted))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using Newtonsoft.Json;
@@ -19,6 +20,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                 instance.ControllerName = "SFX";
                 instance.ValueToChange = "Intensity";
                 instance.Steps = 1;
+                instance.showValueAfterChange = false;
                 return instance;
             }
 
@@ -30,11 +32,17 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             
             [JsonProperty(PropertyName = "ValueToChange")]
             public string ValueToChange { get; set; }
+
+            [JsonProperty(PropertyName = "showValueAfterChange")]
+            public bool showValueAfterChange { get; set; }
         }
 
         #region Private Members
 
         private PluginSettings settings;
+        private bool _valueShown;
+        private int _valueShownTimeout = 1;
+        private DateTime _valueShownDateTime = DateTime.Now;
 
         #endregion
         public DecrementControllerValues(SDConnection connection, InitialPayload payload) : base(connection, payload)
@@ -58,34 +66,40 @@ namespace sfx_100_streamdeck_plugin.PluginActions
         {
             try
             {
+                var returnVal = -1;
                 PipeServerConnection.Instance.RestartChannel();
                 switch (settings.ValueToChange)
                 {
                     case "Intensity":
-                        PipeServerConnection.Instance.Channel.ControllerIntensityDecrement(settings.ControllerName, settings.Steps);
+                        returnVal = PipeServerConnection.Instance.Channel.ControllerIntensityDecrement(settings.ControllerName, settings.Steps);
                         break;
 
                     case "Smoothness":
-                        PipeServerConnection.Instance.Channel.ControllerSmoothnessDecrement(settings.ControllerName, settings.Steps);
+                        returnVal = PipeServerConnection.Instance.Channel.ControllerSmoothnessDecrement(settings.ControllerName, settings.Steps);
                         break;
 
                     case "Acceleration":
-                        PipeServerConnection.Instance.Channel.ControllerAccelerationDecrement(settings.ControllerName, settings.Steps);
+                        returnVal = PipeServerConnection.Instance.Channel.ControllerAccelerationDecrement(settings.ControllerName, settings.Steps);
                         break;
 
                     case "MinSpeed":
-                        PipeServerConnection.Instance.Channel.ControllerMinSpeedDecrement(settings.ControllerName, settings.Steps);
+                        returnVal = PipeServerConnection.Instance.Channel.ControllerMinSpeedDecrement(settings.ControllerName, settings.Steps);
                         break;
 
                     case "MaxSpeed":
-                        PipeServerConnection.Instance.Channel.ControllerMaxSpeedDecrement(settings.ControllerName, settings.Steps);
+                        returnVal = PipeServerConnection.Instance.Channel.ControllerMaxSpeedDecrement(settings.ControllerName, settings.Steps);
                         break;
 
                     default:
                         Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: ValueToChange not set correctly: " +settings.ValueToChange );
                         break;
                 }
-                
+
+                if (settings.showValueAfterChange)
+                {
+                    DrawValueData(returnVal);
+                }
+
             }
             catch (EndpointNotFoundException endpointNotFoundException)
             {
@@ -101,7 +115,13 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             }
         }
 
-        public override void OnTick() { }
+        public override void OnTick()
+        {
+            if (_valueShown && DateTime.Now - _valueShownDateTime > TimeSpan.FromSeconds(_valueShownTimeout))
+            {
+                RestoreImage();
+            }
+        }
 
         public override void ReceivedSettings(ReceivedSettingsPayload payload)
         {
@@ -112,7 +132,54 @@ namespace sfx_100_streamdeck_plugin.PluginActions
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
 
         #region Private Methods
+        private async Task DrawValueData(int value)
+        {
 
+            try
+            {
+                var ForegroundColor = "#ffffff";
+                var BackgroundColor = "#000000";
+
+                Bitmap bmp = Tools.GenerateGenericKeyImage(out Graphics graphics);
+                int height = bmp.Height;
+                int width = bmp.Width;
+
+                SizeF stringSize;
+                float stringPos;
+                var fontDefault = new Font("Verdana", 30, FontStyle.Bold);
+
+                // Background
+                var bgBrush = new SolidBrush(ColorTranslator.FromHtml(BackgroundColor));
+                var fgBrush = new SolidBrush(ColorTranslator.FromHtml(ForegroundColor));
+                graphics.FillRectangle(bgBrush, 0, 0, width, height);
+
+                // Top title
+                string title = "";
+                stringSize = graphics.MeasureString(title, fontDefault);
+                stringPos = Math.Abs((width - stringSize.Width)) / 2;
+                graphics.DrawString(title, fontDefault, fgBrush, new PointF(stringPos, 5));
+
+                string currStr = value.ToString();
+                int buffer = 0;
+
+                stringSize = graphics.MeasureString(currStr, fontDefault);
+                stringPos = Math.Abs((width - stringSize.Width)) / 2;
+                graphics.DrawString(currStr, fontDefault, fgBrush, new PointF(stringPos, 50));
+                Connection.SetImageAsync(bmp);
+                graphics.Dispose();
+                _valueShown = true;
+                _valueShownDateTime = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, $"Error drawing image data {ex}");
+            }
+        }
+
+        private async Task RestoreImage()
+        {
+            await Connection.SetDefaultImageAsync();
+        }
         private Task SaveSettings()
         {
             return Connection.SetSettingsAsync(JObject.FromObject(settings));

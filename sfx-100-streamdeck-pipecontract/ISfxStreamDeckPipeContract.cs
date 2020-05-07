@@ -27,48 +27,48 @@ namespace sfx_100_streamdeck_pipecontract
         bool DisableAllEffects();
 
         [OperationContract]
-        bool IncrementOverallIntensity(int steps);
+        int IncrementOverallIntensity(int steps);
 
         [OperationContract]
-        bool DecrementOverallIntensity(int steps);
+        int DecrementOverallIntensity(int steps);
 
         [OperationContract]
-        void SetOverallIntensity(int value);
+        int SetOverallIntensity(int value);
 
         [OperationContract]
         int GetOverallIntensity();
 
         [OperationContract]
-        void ResetOverallIntensity(); 
+        int ResetOverallIntensity(); 
 
         #region Controller Intensity
 
         [OperationContract]
-        void ControllerIntensityIncrement(string controllerName, int steps);
+        int ControllerIntensityIncrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerIntensityDecrement(string controllerName, int steps);
+        int ControllerIntensityDecrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerIntensitySet(string controllerName, int value);
+        int ControllerIntensitySet(string controllerName, int value);
 
         [OperationContract]
         int ControllerIntensityGet(string controllerName);
 
         [OperationContract]
-        void ControllerIntensityReset(string controllerName);
+        int ControllerIntensityReset(string controllerName);
         #endregion
 
         #region Controller Smoothness
 
         [OperationContract]
-        void ControllerSmoothnessIncrement(string controllerName, int steps);
+        int ControllerSmoothnessIncrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerSmoothnessDecrement(string controllerName, int steps);
+        int ControllerSmoothnessDecrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerSmoothnessSet(string controllerName, int value);
+        int ControllerSmoothnessSet(string controllerName, int value);
 
         [OperationContract]
         int ControllerSmoothnessGet(string controllerName);
@@ -77,26 +77,26 @@ namespace sfx_100_streamdeck_pipecontract
         bool ControllerSmoothnessIsEnabled(string controllerName);
 
         [OperationContract]
-        void ControllerSmoothnessEnable(string controllerName);
+        bool ControllerSmoothnessEnable(string controllerName);
 
         [OperationContract]
-        void ControllerSmoothnessDisable(string controllerName);
+        bool ControllerSmoothnessDisable(string controllerName);
 
         [OperationContract]
-        void ControllerSmoothnessToggle(string controllerName);
+        bool ControllerSmoothnessToggle(string controllerName);
 
         #endregion
 
         #region Controller Acceleration 
 
         [OperationContract]
-        void ControllerAccelerationIncrement(string controllerName, int steps);
+        int ControllerAccelerationIncrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerAccelerationDecrement(string controllerName, int steps);
+        int ControllerAccelerationDecrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerAccelerationSet(string controllerName, int value);
+        int ControllerAccelerationSet(string controllerName, int value);
 
         [OperationContract]
         int ControllerAccelerationGet(string controllerName);
@@ -106,13 +106,13 @@ namespace sfx_100_streamdeck_pipecontract
         #region Controller Min Speed 
 
         [OperationContract]
-        void ControllerMinSpeedIncrement(string controllerName, int steps);
+        int ControllerMinSpeedIncrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerMinSpeedDecrement(string controllerName, int steps);
+        int ControllerMinSpeedDecrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerMinSpeedSet(string controllerName, int value);
+        int ControllerMinSpeedSet(string controllerName, int value);
 
         [OperationContract]
         int ControllerMinSpeedGet(string controllerName);
@@ -122,13 +122,13 @@ namespace sfx_100_streamdeck_pipecontract
         #region Controller Max Speed 
 
         [OperationContract]
-        void ControllerMaxSpeedIncrement(string controllerName, int steps);
+        int ControllerMaxSpeedIncrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerMaxSpeedDecrement(string controllerName, int steps);
+        int ControllerMaxSpeedDecrement(string controllerName, int steps);
 
         [OperationContract]
-        void ControllerMaxSpeedSet(string controllerName, int value);
+        int ControllerMaxSpeedSet(string controllerName, int value);
 
         [OperationContract]
         int ControllerMaxSpeedGet(string controllerName);
@@ -138,13 +138,13 @@ namespace sfx_100_streamdeck_pipecontract
         #region Effect Smoothing
 
         [OperationContract]
-        void EffectSmoothingIncrement(string effectName, int steps);
+        int EffectSmoothingIncrement(string effectName, int steps);
 
         [OperationContract]
-        void EffectSmoothingDecrement(string effectName, int steps);
+        int EffectSmoothingDecrement(string effectName, int steps);
 
         [OperationContract]
-        void EffectSmoothingSet(string effectName, int value);
+        int EffectSmoothingSet(string effectName, int value);
 
         [OperationContract]
         int EffectSmoothingGet(string effectName);
@@ -154,13 +154,13 @@ namespace sfx_100_streamdeck_pipecontract
         #region Effect Intensity
 
         [OperationContract]
-        void EffectIntensityIncrement(string effectName, int steps);
+        int EffectIntensityIncrement(string effectName, int steps);
 
         [OperationContract]
-        void EffectIntensityDecrement(string effectName, int steps);
+        int EffectIntensityDecrement(string effectName, int steps);
 
         [OperationContract]
-        void EffectIntensitySet(string effectName, int value);
+        int EffectIntensitySet(string effectName, int value);
 
         [OperationContract]
         int EffectIntensityGet(string effectName);
@@ -172,13 +172,13 @@ namespace sfx_100_streamdeck_pipecontract
         bool EffectLinearIsEnabled(string effectName);
 
         [OperationContract]
-        void EffectLinearEnable(string effectName);
+        bool EffectLinearEnable(string effectName);
 
         [OperationContract]
-        void EffectLinearDisable(string effectName);
+        bool EffectLinearDisable(string effectName);
 
         [OperationContract]
-        void EffectLinearToggle(string effectName);
+        bool EffectLinearToggle(string effectName);
         #endregion
 
         #region Effect Enabled
@@ -186,13 +186,13 @@ namespace sfx_100_streamdeck_pipecontract
         bool EffectIsEnabled(string effectName);
 
         [OperationContract]
-        void EffectEnable(string effectName);
+        bool EffectEnable(string effectName);
 
         [OperationContract]
-        void EffectDisable(string effectName);
+        bool EffectDisable(string effectName);
 
         [OperationContract]
-        void EffectToggle(string effectName);
+        bool EffectToggle(string effectName);
         #endregion
 
         #region Effect Muted
@@ -200,13 +200,13 @@ namespace sfx_100_streamdeck_pipecontract
         bool EffectIsMuted(string effectName);
 
         [OperationContract]
-        void EffectMuteEnable(string effectName);
+        bool EffectMuteEnable(string effectName);
 
         [OperationContract]
-        void EffectMuteDisable(string effectName);
+        bool EffectMuteDisable(string effectName);
 
         [OperationContract]
-        void EffectMuteToggle(string effectName);
+        bool EffectMuteToggle(string effectName);
 
         #endregion
     }

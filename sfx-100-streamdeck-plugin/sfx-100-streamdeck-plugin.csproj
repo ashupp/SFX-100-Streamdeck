@@ -68,30 +68,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PipeServerConnection.cs" />
-    <Compile Include="PluginActions\DecrementControllerValues.cs" />
-    <Compile Include="PluginActions\DisableControllerProperty.cs" />
-    <Compile Include="PluginActions\EnableControllerProperty.cs" />
-    <Compile Include="PluginActions\EnableEffectProperty.cs" />
-    <Compile Include="PluginActions\DisableEffectProperty.cs" />
-    <Compile Include="PluginActions\IncrementControllerValues.cs" />
-    <Compile Include="PluginActions\ShowControllerValue.cs" />
-    <Compile Include="PluginActions\ShowEffectValue.cs" />
-    <Compile Include="PluginActions\SetControllerValue.cs" />
-    <Compile Include="PluginActions\SetEffectValue.cs" />
-    <Compile Include="PluginActions\DecrementEffectValues.cs" />
-    <Compile Include="PluginActions\IncrementEffectValues.cs" />
-    <Compile Include="PluginActions\IsRunning.cs" />
-    <Compile Include="PluginActions\IsTelemetryProviderConnected.cs" />
-    <Compile Include="PluginActions\EnableAllEffects.cs" />
-    <Compile Include="PluginActions\DisableAllEffects.cs" />
-    <Compile Include="PluginActions\DecrementOverallIntensity.cs" />
-    <Compile Include="PluginActions\IncrementOverallIntensity.cs" />
-    <Compile Include="PluginActions\StartSimFeedback.cs" />
-    <Compile Include="PluginActions\StartProfile.cs" />
-    <Compile Include="PluginActions\StartMotion.cs" />
-    <Compile Include="PluginActions\StartStopMotionToggle.cs" />
-    <Compile Include="PluginActions\ExitSimFeedback.cs" />
-    <Compile Include="PluginActions\StopMotion.cs" />
+    <Compile Include="PluginActions\Controllers\DecrementControllerValues.cs" />
+    <Compile Include="PluginActions\Controllers\DisableControllerProperty.cs" />
+    <Compile Include="PluginActions\Controllers\EnableControllerProperty.cs" />
+    <Compile Include="PluginActions\Effects\EnableEffectProperty.cs" />
+    <Compile Include="PluginActions\Effects\DisableEffectProperty.cs" />
+    <Compile Include="PluginActions\Controllers\IncrementControllerValues.cs" />
+    <Compile Include="PluginActions\OverallIntensity\SetOverallIntensityValue.cs" />
+    <Compile Include="PluginActions\Controllers\ShowControllerValue.cs" />
+    <Compile Include="PluginActions\OverallIntensity\ShowOverallIntensityValue.cs" />
+    <Compile Include="PluginActions\Effects\ShowEffectValue.cs" />
+    <Compile Include="PluginActions\Controllers\SetControllerValue.cs" />
+    <Compile Include="PluginActions\Effects\SetEffectValue.cs" />
+    <Compile Include="PluginActions\Effects\DecrementEffectValues.cs" />
+    <Compile Include="PluginActions\Effects\IncrementEffectValues.cs" />
+    <Compile Include="PluginActions\General\IsRunning.cs" />
+    <Compile Include="PluginActions\General\IsTelemetryProviderConnected.cs" />
+    <Compile Include="PluginActions\Effects\EnableAllEffects.cs" />
+    <Compile Include="PluginActions\Effects\DisableAllEffects.cs" />
+    <Compile Include="PluginActions\OverallIntensity\DecrementOverallIntensity.cs" />
+    <Compile Include="PluginActions\OverallIntensity\IncrementOverallIntensity.cs" />
+    <Compile Include="PluginActions\General\StartSimFeedback.cs" />
+    <Compile Include="PluginActions\General\StartProfile.cs" />
+    <Compile Include="PluginActions\General\StartMotion.cs" />
+    <Compile Include="PluginActions\General\StartStopMotionToggle.cs" />
+    <Compile Include="PluginActions\General\ExitSimFeedback.cs" />
+    <Compile Include="PluginActions\General\StopMotion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -229,10 +231,16 @@
     <Content Include="PropertyInspector\EnableEffectProperty.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="PropertyInspector\SetOverallIntensityValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PropertyInspector\ShowControllerValue.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\ShowEffectValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\ShowOverallIntensityValue.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\SetEffectValue.html">
@@ -300,5 +308,6 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

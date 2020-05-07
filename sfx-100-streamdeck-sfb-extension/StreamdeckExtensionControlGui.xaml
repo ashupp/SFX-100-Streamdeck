@@ -16,9 +16,9 @@
         <Label x:Name="streamdeckExtensionTitle" Content="Streamdeck Extension" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"><Hyperlink NavigateUri="https://github.com/ashupp/SFX-100-Streamdeck" RequestNavigate="Hyperlink_OnRequestNavigate" ><Run Text="https://github.com/ashupp/SFX-100-Streamdeck"/></Hyperlink></TextBlock>
         <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" Margin="10,65,469,10" Visibility="Visible"/>
-        <Button Content="Save Log" IsEnabled="{Binding ElementName=chkLogging, Path=IsChecked}" HorizontalAlignment="Left" Margin="480,40,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
+        <Button Content="Save Log" IsEnabled="{Binding ElementName=chkLogging, Path=IsChecked}" HorizontalAlignment="Left" Margin="480,38,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
         <Button Content="Reload Profile Data" HorizontalAlignment="Left" Margin="621,38,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click_1"/>
-        <CheckBox x:Name="chkLogging" Content="Enable Logging" HorizontalAlignment="Left" Margin="359,43,0,0" VerticalAlignment="Top" Checked="chkLogging_Checked" Unchecked="chkLogging_Unchecked"/>
+        <CheckBox x:Name="chkLogging" Content="Enable Logging" HorizontalAlignment="Left" Margin="359,41,0,0" VerticalAlignment="Top" Checked="chkLogging_Checked" Unchecked="chkLogging_Unchecked"/>
 
     </Grid>
 </UserControl>
