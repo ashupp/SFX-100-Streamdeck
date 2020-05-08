@@ -97,36 +97,18 @@ namespace sfx_100_streamdeck_sfb_extension
         #region OverallIntensity
         public int IncrementOverallIntensity(int steps)
         {
-            try
-            {
-                GuiLoggerProvider.Instance.Log("Incoming Command: IncrementOverallIntensity by " + steps);
-                for (var i = steps - 1; i >= 0; i--)
-                {
-                    SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.IncrementOverallIntensity();
-                }
-                return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
-            }
-            catch
-            {
-                return -1;
-            }
+            var hWnd = (IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle;
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue(hWnd, currVal + steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
         }
 
         public int DecrementOverallIntensity(int steps)
         {
-            try
-            {
-                GuiLoggerProvider.Instance.Log("Incoming Command: DecrementOverallIntensity by " + steps);
-                for (var i = steps - 1; i >= 0; i--)
-                {
-                    SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.DecrementOverallIntensity();
-                }
-                return SimFeedbackInvoker.Instance.GetCurrentSliderValue((IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle);
-            }
-            catch
-            {
-                return -1;
-            }
+            var hWnd = (IntPtr)SimFeedbackInvoker.Instance.actionElements.OverallIntensity.Current.NativeWindowHandle;
+            var currVal = SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
+            SimFeedbackInvoker.Instance.SetCurrentSliderValue(hWnd, currVal - steps);
+            return SimFeedbackInvoker.Instance.GetCurrentSliderValue(hWnd);
         }
 
         public int SetOverallIntensity(int value)
