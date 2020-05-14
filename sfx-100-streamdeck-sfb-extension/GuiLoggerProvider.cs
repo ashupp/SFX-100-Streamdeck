@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -32,9 +33,9 @@ namespace sfx_100_streamdeck_sfb_extension
         }
 
         public ListBox LogBox { get; set; }
+        public bool LoggingEnabled = false;
 
         #endregion
-
 
 
         /// <summary>
@@ -43,16 +44,22 @@ namespace sfx_100_streamdeck_sfb_extension
         /// <param name="logEntry">Object to log</param>
         public void Log(object logEntry)
         {
-            if (LogBox != null)
+            if (!Instance.LoggingEnabled)
+                return;
+            lock (syncRoot)
             {
-                if (LogBox.Items.Count >= 250)
+                
+                if (LogBox != null)
                 {
-                    LogBox.Items.RemoveAt(0);
-                }
+                    if (LogBox.Items.Count >= 1000)
+                    {
+                        LogBox.Items.RemoveAt(0);
+                    }
 
-                LogBox.Items.Add(DateTime.Now + ": " + logEntry);
-                LogBox.SelectedIndex = LogBox.Items.Count - 1;
-                LogBox.ScrollIntoView(LogBox.SelectedItem);
+                    LogBox.Items.Add(DateTime.Now + ": " + logEntry);
+                    LogBox.SelectedIndex = LogBox.Items.Count - 1;
+                    LogBox.ScrollIntoView(LogBox.SelectedItem);
+                }
             }
         }
     }

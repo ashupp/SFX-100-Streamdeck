@@ -54,6 +54,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             {
                 settings = PluginSettings.CreateDefaultSettings();
                 Connection.SetSettingsAsync(JObject.FromObject(settings));
+                SaveSettings();
             }
             else
             {

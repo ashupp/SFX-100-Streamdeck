@@ -11,8 +11,22 @@
 </head>
 <body>
 <div class="sdpi-wrapper">
-    <div class="sdpi-item" id="decrementSteps">
-        <div class="sdpi-item-label">Decrement by steps</div>
+    <details class="message info">
+        <summary>The Effect name MUST exactly match the effect name in SimFeedback</summary>
+    </details>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Effect Name</div>
+        <input class="sdpi-item-value sdProperty" placeholder="i.e Heave" value="" id="EffectName" oninput="setSettings()">
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Value to change</div>
+        <select class="sdpi-item-value select sdProperty" id="ValueToChange" oninput="setSettings()">
+            <option value="Intensity">Intensity</option>
+            <option value="Smoothness">Smoothness</option>
+        </select>
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Increment by steps</div>
         <input class="sdpi-item-value sdProperty" placeholder="default 1" value="" id="Steps" oninput="setSettings()">
     </div>
     <div class="sdpi-item">

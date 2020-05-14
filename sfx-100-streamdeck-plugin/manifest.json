@@ -2,6 +2,58 @@
   "Actions": [
     {
       "Icon": "Images/icon",
+      "Name": "(Re)Start SimFeedback with Profile",
+      "States": [
+        {
+          "Name": "Start Profile",
+          "Title": "",
+          "Image": "Images/SFB-Start",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "(Re)Start SimFeedback with Profile",
+      "UUID": "sfx-100-streamdeck-plugin.startprofile",
+      "PropertyInspectorPath": "PropertyInspector/StartProfile.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Start SimFeedback",
+      "States": [
+        {
+          "Name": "Start SimFeedback",
+          "Title": "",
+          "Image": "Images/SFB-Start",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Start SimFeedback",
+      "UUID": "sfx-100-streamdeck-plugin.startsimfeedback",
+      "PropertyInspectorPath": "PropertyInspector/Start.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Exit SimFeedback",
+      "States": [
+        {
+          "Name": "Exit SimFeedback",
+          "Title": "",
+          "Image": "Images/SFB-Exit",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Exit SimFeedback",
+      "UUID": "sfx-100-streamdeck-plugin.exitsimfeedback",
+      "PropertyInspectorPath": "PropertyInspector/empty.html"
+    },
+
+    {
+      "Icon": "Images/icon",
       "Name": "Start Motion",
       "States": [
         {
@@ -34,36 +86,37 @@
     },
     {
       "Icon": "Images/icon",
-      "Name": "Start/Stop Motion Toggle",
+      "Name": "Is running?",
       "States": [
         {
+          "Name": "Running?",
           "Title": "",
-          "Image": "Images/pluginAction",
+          "Image": "Images/Blank",
           "TitleAlignment": "middle",
-          "FontSize": "12"
+          "FontSize": "6"
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Start Motion",
-      "UUID": "sfx-100-streamdeck-plugin.startstopmotiontoggle",
-      "PropertyInspectorPath": "PropertyInspector/StartStopMotionToggle.html"
+      "Tooltip": "Is running?",
+      "UUID": "sfx-100-streamdeck-plugin.isrunning",
+      "PropertyInspectorPath": "PropertyInspector/IsRunning.html"
     },
     {
       "Icon": "Images/icon",
-      "Name": "Disable All Effects",
+      "Name": "Is telemety connected?",
       "States": [
         {
-          "Name": "Off",
+          "Name": "Telemetry",
           "Title": "",
-          "Image": "Images/EffectsDisable",
+          "Image": "Images/Blank",
           "TitleAlignment": "middle",
-          "FontSize": "9"
+          "FontSize": "6"
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Disable All Effects",
-      "UUID": "sfx-100-streamdeck-plugin.disablealleffects",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "Tooltip": "Is telemety connected?",
+      "UUID": "sfx-100-streamdeck-plugin.istelemetryproviderconnected",
+      "PropertyInspectorPath": "PropertyInspector/IsTelemetryProviderConnected.html"
     },
     {
       "Icon": "Images/icon",
@@ -80,7 +133,24 @@
       "SupportedInMultiActions": true,
       "Tooltip": "Enable All Effects",
       "UUID": "sfx-100-streamdeck-plugin.enablealleffects",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "PropertyInspectorPath": "PropertyInspector/EnableDisableAllEffects.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Disable All Effects",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/EffectsDisable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable All Effects",
+      "UUID": "sfx-100-streamdeck-plugin.disablealleffects",
+      "PropertyInspectorPath": "PropertyInspector/EnableDisableAllEffects.html"
     },
     {
       "Icon": "Images/icon",
@@ -112,103 +182,252 @@
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Increment overall intensity",
+      "Tooltip": "Decrement Overall Intensity",
       "UUID": "sfx-100-streamdeck-plugin.decrementoverallintensity",
       "PropertyInspectorPath": "PropertyInspector/DecrementOverallIntensity.html"
     },
     {
       "Icon": "Images/icon",
-      "Name": "Is telemety connected?",
+      "Name": "Set Overall Intensity",
       "States": [
         {
-          "Name": "Telemetry",
+          "Name": "Off",
           "Title": "",
-          "Image": "Images/pluginAction",
-          "TitleAlignment": "middle",
-          "FontSize": "6"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Increment overall intensity",
-      "UUID": "sfx-100-streamdeck-plugin.istelemetryproviderconnected",
-      "PropertyInspectorPath": "PropertyInspector/IsTelemetryProviderConnected.html"
-    },
-    {
-      "Icon": "Images/icon",
-      "Name": "Is running?",
-      "States": [
-        {
-          "Name": "Running?",
-          "Title": "",
-          "Image": "Images/pluginAction",
-          "TitleAlignment": "middle",
-          "FontSize": "6"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Is running?",
-      "UUID": "sfx-100-streamdeck-plugin.isrunning",
-      "PropertyInspectorPath": "PropertyInspector/IsRunning.html"
-    },
-    {
-      "Icon": "Images/icon",
-      "Name": "Start Profile",
-      "States": [
-        {
-          "Name": "Start Profile",
-          "Title": "",
-          "Image": "Images/SFB-Start",
+          "Image": "Images/Blank",
           "TitleAlignment": "middle",
           "FontSize": "9"
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Start Profile",
-      "UUID": "sfx-100-streamdeck-plugin.startprofile",
-      "PropertyInspectorPath": "PropertyInspector/StartProfile.html"
+      "Tooltip": "Set Overall Intensity",
+      "UUID": "sfx-100-streamdeck-plugin.setoverallintensityvalue",
+      "PropertyInspectorPath": "PropertyInspector/SetOverallIntensityValue.html"
     },
     {
       "Icon": "Images/icon",
-      "Name": "Exit SimFeedback",
+      "Name": "Show Overall Intensity Value",
       "States": [
         {
-          "Name": "Exit SimFeedback",
-          "Title": "",
-          "Image": "Images/SFB-Exit",
+          "Image": "Images/Blank",
           "TitleAlignment": "middle",
-          "FontSize": "9"
+          "FontSize": "16"
         }
       ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Exit SimFeedback",
-      "UUID": "sfx-100-streamdeck-plugin.exitsimfeedback",
-      "PropertyInspectorPath": "PropertyInspector/empty.html"
+      "SupportedInMultiActions": false,
+      "Tooltip": "Show Overall Intensity Value",
+      "UUID": "sfx-100-streamdeck-plugin.showoverallintensityvalue",
+      "PropertyInspectorPath": "PropertyInspector/.html"
     },
-    {
-      "Icon": "Images/icon",
-      "Name": "Start SimFeedback",
-      "States": [
-        {
-          "Name": "Start SimFeedback",
-          "Title": "",
-          "Image": "Images/SFB-Start",
-          "TitleAlignment": "middle",
-          "FontSize": "9"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Start SimFeedback",
-      "UUID": "sfx-100-streamdeck-plugin.startsimfeedback",
-      "PropertyInspectorPath": "PropertyInspector/Start.html"
-    }
 
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Increment Controller Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueUp",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment Controller Values",
+      "UUID": "sfx-100-streamdeck-plugin.incrementcontrollervalues",
+      "PropertyInspectorPath": "PropertyInspector/IncrementControllerValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Decrement Controller Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueDown",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Decrement Controller Values",
+      "UUID": "sfx-100-streamdeck-plugin.decrementcontrollervalues",
+      "PropertyInspectorPath": "PropertyInspector/DecrementControllerValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Set Controller Value",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/Blank",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Set Controller Value",
+      "UUID": "sfx-100-streamdeck-plugin.setcontrollervalue",
+      "PropertyInspectorPath": "PropertyInspector/SetControllerValue.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Show Controller Value",
+      "States": [
+        {
+          "Image": "Images/Blank",
+          "TitleAlignment": "middle",
+          "FontSize": "16"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Show Controller Value",
+      "UUID": "sfx-100-streamdeck-plugin.showcontrollervalue",
+      "PropertyInspectorPath": "PropertyInspector/ShowControllerValue.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Enable Controller Property",
+      "States": [
+        {
+          "Name": "Enable",
+          "Title": "",
+          "Image": "Images/PropertyEnable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Enable Controller Property",
+      "UUID": "sfx-100-streamdeck-plugin.enablecontrollerproperty",
+      "PropertyInspectorPath": "PropertyInspector/EnableControllerProperty.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Disable Controller Property",
+      "States": [
+        {
+          "Name": "Disable",
+          "Title": "",
+          "Image": "Images/PropertyDisable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable Controller Property",
+      "UUID": "sfx-100-streamdeck-plugin.disablecontrollerproperty",
+      "PropertyInspectorPath": "PropertyInspector/DisableControllerProperty.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Increment Effect Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueUp",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Increment Effect Values",
+      "UUID": "sfx-100-streamdeck-plugin.incrementeffectvalues",
+      "PropertyInspectorPath": "PropertyInspector/IncrementEffectValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Decrement Effect Values",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/ValueDown",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Decrement Effect Values",
+      "UUID": "sfx-100-streamdeck-plugin.decrementeffectvalues",
+      "PropertyInspectorPath": "PropertyInspector/DecrementEffectValues.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Set Effect Value",
+      "States": [
+        {
+          "Name": "Off",
+          "Title": "",
+          "Image": "Images/Blank",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Set Effect Value",
+      "UUID": "sfx-100-streamdeck-plugin.seteffectvalue",
+      "PropertyInspectorPath": "PropertyInspector/SetEffectValue.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Show Effect Value",
+      "States": [
+        {
+          "Image": "Images/Blank",
+          "TitleAlignment": "middle",
+          "FontSize": "16"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Show Effect Value",
+      "UUID": "sfx-100-streamdeck-plugin.showeffectvalue",
+      "PropertyInspectorPath": "PropertyInspector/ShowEffectValue.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Enable Effect Property",
+      "States": [
+        {
+          "Name": "Enable",
+          "Title": "",
+          "Image": "Images/PropertyEnable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Enable Effect Property",
+      "UUID": "sfx-100-streamdeck-plugin.enableeffectproperty",
+      "PropertyInspectorPath": "PropertyInspector/EnableEffectProperty.html"
+    },
+
+    {
+      "Icon": "Images/icon",
+      "Name": "Disable Effect Property",
+      "States": [
+        {
+          "Name": "Disable",
+          "Title": "",
+          "Image": "Images/PropertyDisable",
+          "TitleAlignment": "middle",
+          "FontSize": "9"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Disable Effect Property",
+      "UUID": "sfx-100-streamdeck-plugin.disableeffectproperty",
+      "PropertyInspectorPath": "PropertyInspector/DisableEffectProperty.html"
+    }
   ],
   "Author": "ashupp / ashnet GmbH",
   "Name": "sfx-100-streamdeck-plugin",
   "Description": "Plugin to control SimFeedback via Streamdeck",
   "Icon": "Images/pluginIcon",
   "URL": "http://ashnet.de",
-  "Version": "0.0.1.8",
+  "Version": "0.0.2.6",
   "CodePath": "sfx-100-streamdeck-plugin",
   "Category": "SFX-100 SimFeedback",
   "CategoryIcon": "Images/categoryIcon",

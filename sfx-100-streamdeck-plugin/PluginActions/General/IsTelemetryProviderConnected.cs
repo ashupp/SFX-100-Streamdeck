@@ -8,8 +8,8 @@ using Newtonsoft.Json.Linq;
 
 namespace sfx_100_streamdeck_plugin.PluginActions
 {
-    [PluginActionId("sfx-100-streamdeck-plugin.isrunning")]
-    public class IsRunning : PluginBase
+    [PluginActionId("sfx-100-streamdeck-plugin.istelemetryproviderconnected")]
+    public class IsTelemetryProviderConnected : PluginBase
     {
         private class PluginSettings
         {
@@ -39,12 +39,13 @@ namespace sfx_100_streamdeck_plugin.PluginActions
         string secondaryFile = null;
         DateTime lastRefresh;
 
-        public IsRunning(SDConnection connection, InitialPayload payload) : base(connection, payload)
+        public IsTelemetryProviderConnected(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
                 settings = PluginSettings.CreateDefaultSettings();
                 Connection.SetSettingsAsync(JObject.FromObject(settings));
+                SaveSettings();
             }
             else
             {
@@ -68,14 +69,15 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                     try
                     {
                         PipeServerConnection.Instance.RestartChannel();
-                        var isRunning = PipeServerConnection.Instance.Channel.IsRunning();
-                        if (isRunning)
+                        var telemetryProviderConnected =
+                            PipeServerConnection.Instance.Channel.IsTelemetryProviderConnected();
+                        if (telemetryProviderConnected)
                         {
-                            await SetRunning();
+                            await SetConnected();
                         }
                         else
                         {
-                            await SetNotRunning();
+                            await SetDisconnected();
                         }
                     }
                     catch (EndpointNotFoundException endpointNotFoundException)
@@ -102,11 +104,10 @@ namespace sfx_100_streamdeck_plugin.PluginActions
 
         private async Task SetError()
         {
-            await SetNotRunning();
-
+            await SetDisconnected();
         }
 
-        private async Task SetNotRunning()
+        private async Task SetDisconnected()
         {
             if (!String.IsNullOrWhiteSpace(primaryFile))
             {
@@ -115,11 +116,11 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             }
             else
             {
-                await Connection.SetTitleAsync("Not running");
+                await Connection.SetTitleAsync("Disconnected");
             }
         }
 
-        private async Task SetRunning()
+        private async Task SetConnected()
         {
             if (!String.IsNullOrWhiteSpace(secondaryFile))
             {
@@ -128,7 +129,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             }
             else
             {
-                await Connection.SetTitleAsync("Running");
+                await Connection.SetTitleAsync("Connected");
             }
         }
 

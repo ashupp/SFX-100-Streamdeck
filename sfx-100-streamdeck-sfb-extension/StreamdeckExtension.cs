@@ -9,6 +9,7 @@ namespace sfx_100_streamdeck_sfb_extension
     {
         private StreamdeckExtensionControl _extCtrl;
         private ServiceHost _serviceHost;
+        private SimFeedbackInvoker sfbInvoker;
 
         public StreamdeckExtension()
         {
@@ -55,16 +56,20 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             if (IsRunning) return;
             SimFeedbackFacade.Log("Starting Stream Deck Extension");
+            GuiLoggerProvider.Instance.Log("Starting Stream Deck Extension");
 
             StartServer();
             _extCtrl.Start();
             IsRunning = true;
+            GuiLoggerProvider.Instance.Log("Stream Deck Extension running");
         }
+
 
         public override void Stop()
         {
             if (!IsRunning) return;
             Log("Stopping Stream Deck Extension");
+            GuiLoggerProvider.Instance.Log("Stopping Stream Deck Extension");
             ShutdownServer();
             _extCtrl.Stop();
             IsRunning = false;

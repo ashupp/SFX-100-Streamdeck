@@ -11,15 +11,12 @@
 </head>
 <body>
 <div class="sdpi-wrapper">
-    <div class="sdpi-item" id="decrementSteps">
-        <div class="sdpi-item-label">Decrement by steps</div>
-        <input class="sdpi-item-value sdProperty" placeholder="default 1" value="" id="Steps" oninput="setSettings()">
-    </div>
+    <details class="message info">
+        <summary>Title must be empty to work. This is not a button, only a display.</summary>
+    </details>
     <div class="sdpi-item">
-        <div class="sdpi-item-value">
-            <input id="showValueAfterChange" class="sdProperty sdCheckbox" type="checkbox" value="" oninput="setSettings()">
-            <label for="showValueAfterChange" class="sdpi-item-label"><span></span>Show new value on button after change</label>
-        </div>
+        <div class="sdpi-item-label">Refresh Rate (milliseconds)</div>
+        <input class="sdpi-item-value sdProperty" placeholder="default 1000" value="" id="RefreshRate" oninput="setSettings()">
     </div>
 </div>
 </body>

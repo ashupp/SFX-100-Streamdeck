@@ -8,14 +8,17 @@
              Unloaded="StreamdeckExtensionControlGUI_OnUnloaded"
              Loaded="StreamdeckExtensionControlGUI_OnLoaded"
              x:Name="StreamdeckExtensionControlGuiElement"
-             mc:Ignorable="d" Height="273.449" Width="1226.643" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-    <Grid VerticalAlignment="Top" Height="282" Width="Auto" Margin="0,0,0.5,0">
+             mc:Ignorable="d" Height="389.736" Width="1226.643" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+    <Grid VerticalAlignment="Top" Height="387" Width="Auto" Margin="0,0,1,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="streamdeckExtensionTitle" Content="Streamdeck Extension" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"><Hyperlink NavigateUri="https://github.com/ashupp/SFX-100-Streamdeck" RequestNavigate="Hyperlink_OnRequestNavigate" ><Run Text="https://github.com/ashupp/SFX-100-Streamdeck"/></Hyperlink></TextBlock>
-        <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,86,598,0" Height="160"/>
+        <ListBox x:Name="debugBox" HorizontalAlignment="Stretch" Margin="10,65,469,10" Visibility="Visible"/>
+        <Button Content="Save Log" IsEnabled="{Binding ElementName=chkLogging, Path=IsChecked}" HorizontalAlignment="Left" Margin="480,38,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
+        <Button Content="Reload Profile Data" HorizontalAlignment="Left" Margin="621,38,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click_1"/>
+        <CheckBox x:Name="chkLogging" Content="Enable Logging" HorizontalAlignment="Left" Margin="359,41,0,0" VerticalAlignment="Top" Checked="chkLogging_Checked" Unchecked="chkLogging_Unchecked"/>
 
     </Grid>
 </UserControl>

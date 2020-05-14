@@ -23,111 +23,12 @@ namespace sfx_100_streamdeck_sfb_extension.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int maxServoId {
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int UIAutomationDelay {
             get {
-                return ((int)(this["maxServoId"]));
-            }
-            set {
-                this["maxServoId"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public int servoQueryTimeout {
-            get {
-                return ((int)(this["servoQueryTimeout"]));
-            }
-            set {
-                this["servoQueryTimeout"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int comOptionsDataBits {
-            get {
-                return ((int)(this["comOptionsDataBits"]));
-            }
-            set {
-                this["comOptionsDataBits"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Odd")]
-        public global::System.IO.Ports.Parity comOptionsParity {
-            get {
-                return ((global::System.IO.Ports.Parity)(this["comOptionsParity"]));
-            }
-            set {
-                this["comOptionsParity"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("One")]
-        public global::System.IO.Ports.StopBits comOptionsStopBits {
-            get {
-                return ((global::System.IO.Ports.StopBits)(this["comOptionsStopBits"]));
-            }
-            set {
-                this["comOptionsStopBits"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
-        public int comOptionsSpeed {
-            get {
-                return ((int)(this["comOptionsSpeed"]));
-            }
-            set {
-                this["comOptionsSpeed"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string comOptionsLastConnectedPort {
-            get {
-                return ((string)(this["comOptionsLastConnectedPort"]));
-            }
-            set {
-                this["comOptionsLastConnectedPort"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool comOptionsAutoConnectOnStartup {
-            get {
-                return ((bool)(this["comOptionsAutoConnectOnStartup"]));
-            }
-            set {
-                this["comOptionsAutoConnectOnStartup"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string profilesPath {
-            get {
-                return ((string)(this["profilesPath"]));
-            }
-            set {
-                this["profilesPath"] = value;
+                return ((int)(this["UIAutomationDelay"]));
             }
         }
     }

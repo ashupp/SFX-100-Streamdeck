@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\sfx-100-streamdeck-plugin.sdPlugin\</OutputPath>
@@ -68,18 +68,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PipeServerConnection.cs" />
-    <Compile Include="PluginActions\IsRunning.cs" />
-    <Compile Include="PluginActions\IsTelemetryProviderConnected.cs" />
-    <Compile Include="PluginActions\EnableAllEffects.cs" />
-    <Compile Include="PluginActions\DisableAllEffects.cs" />
-    <Compile Include="PluginActions\DecrementOverallIntensity.cs" />
-    <Compile Include="PluginActions\IncrementOverallIntensity.cs" />
-    <Compile Include="PluginActions\StartSimFeedback.cs" />
-    <Compile Include="PluginActions\StartProfile.cs" />
-    <Compile Include="PluginActions\StartMotion.cs" />
-    <Compile Include="PluginActions\StartStopMotionToggle.cs" />
-    <Compile Include="PluginActions\ExitSimFeedback.cs" />
-    <Compile Include="PluginActions\StopMotion.cs" />
+    <Compile Include="PluginActions\Controllers\DecrementControllerValues.cs" />
+    <Compile Include="PluginActions\Controllers\DisableControllerProperty.cs" />
+    <Compile Include="PluginActions\Controllers\EnableControllerProperty.cs" />
+    <Compile Include="PluginActions\Effects\EnableEffectProperty.cs" />
+    <Compile Include="PluginActions\Effects\DisableEffectProperty.cs" />
+    <Compile Include="PluginActions\Controllers\IncrementControllerValues.cs" />
+    <Compile Include="PluginActions\OverallIntensity\SetOverallIntensityValue.cs" />
+    <Compile Include="PluginActions\Controllers\ShowControllerValue.cs" />
+    <Compile Include="PluginActions\OverallIntensity\ShowOverallIntensityValue.cs" />
+    <Compile Include="PluginActions\Effects\ShowEffectValue.cs" />
+    <Compile Include="PluginActions\Controllers\SetControllerValue.cs" />
+    <Compile Include="PluginActions\Effects\SetEffectValue.cs" />
+    <Compile Include="PluginActions\Effects\DecrementEffectValues.cs" />
+    <Compile Include="PluginActions\Effects\IncrementEffectValues.cs" />
+    <Compile Include="PluginActions\General\IsRunning.cs" />
+    <Compile Include="PluginActions\General\IsTelemetryProviderConnected.cs" />
+    <Compile Include="PluginActions\Effects\EnableAllEffects.cs" />
+    <Compile Include="PluginActions\Effects\DisableAllEffects.cs" />
+    <Compile Include="PluginActions\OverallIntensity\DecrementOverallIntensity.cs" />
+    <Compile Include="PluginActions\OverallIntensity\IncrementOverallIntensity.cs" />
+    <Compile Include="PluginActions\General\StartSimFeedback.cs" />
+    <Compile Include="PluginActions\General\StartProfile.cs" />
+    <Compile Include="PluginActions\General\StartMotion.cs" />
+    <Compile Include="PluginActions\General\StartStopMotionToggle.cs" />
+    <Compile Include="PluginActions\General\ExitSimFeedback.cs" />
+    <Compile Include="PluginActions\General\StopMotion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +105,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Blank%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Blank.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\categoryIcon%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -151,6 +171,18 @@
     <Content Include="Images\pluginIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\PropertyDisable%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PropertyDisable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PropertyEnable%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PropertyEnable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\SFB-Exit%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -163,6 +195,18 @@
     <Content Include="Images\SFB-Start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\ValueDown%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ValueDown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ValueUp%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ValueUp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PropertyInspector\caret.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -172,6 +216,45 @@
     <Content Include="PropertyInspector\check.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="PropertyInspector\DisableControllerProperty.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\DisableEffectProperty.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\EnableDisableAllEffects.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\EnableControllerProperty.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\EnableEffectProperty.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\SetOverallIntensityValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\ShowControllerValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\ShowEffectValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\ShowOverallIntensityValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\SetEffectValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\SetControllerValue.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\IncrementControllerValues.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\DecrementControllerValues.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PropertyInspector\elg_calendar.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -179,6 +262,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\DecrementOverallIntensity.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\DecrementEffectValues.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\IncrementEffectValues.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\StartStopMotionToggle.html">
@@ -216,7 +305,9 @@
     <ProjectReference Include="..\sfx-100-streamdeck-pipecontract\sfx-100-streamdeck-pipecontract.csproj">
       <Project>{0dd43943-2b44-489d-8478-75c5b2f87e8c}</Project>
       <Name>sfx-100-streamdeck-pipecontract</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

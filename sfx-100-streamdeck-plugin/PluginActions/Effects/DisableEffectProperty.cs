@@ -8,20 +8,25 @@ using System.ServiceModel;
 
 namespace sfx_100_streamdeck_plugin.PluginActions
 {
-    [PluginActionId("sfx-100-streamdeck-plugin.incrementoverallintensity")]
-    public class IncrementOverallIntensity : PluginBase
+    [PluginActionId("sfx-100-streamdeck-plugin.disableeffectproperty")]
+    public class DisableEffectProperty : PluginBase
     {
         private class PluginSettings
         {
             public static PluginSettings CreateDefaultSettings()
             {
                 PluginSettings instance = new PluginSettings();
-                instance.Steps = "1";
+                instance.EffectName = "Heave";
+                instance.ValueToChange = "Enable";
                 return instance;
             }
 
-            [JsonProperty(PropertyName = "Steps")]
-            public string Steps { get; set; }
+            [JsonProperty(PropertyName = "EffectName")]
+            public string EffectName { get; set; }
+
+            [JsonProperty(PropertyName = "ValueToChange")]
+            public string ValueToChange { get; set; }
+
         }
 
         #region Private Members
@@ -29,11 +34,12 @@ namespace sfx_100_streamdeck_plugin.PluginActions
         private PluginSettings settings;
 
         #endregion
-        public IncrementOverallIntensity(SDConnection connection, InitialPayload payload) : base(connection, payload)
+        public DisableEffectProperty(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
                 settings = PluginSettings.CreateDefaultSettings();
+                SaveSettings();
             }
             else
             {
@@ -50,7 +56,21 @@ namespace sfx_100_streamdeck_plugin.PluginActions
             try
             {
                 PipeServerConnection.Instance.RestartChannel();
-                PipeServerConnection.Instance.Channel.IncrementOverallIntensity(Convert.ToInt32(settings.Steps));
+                switch (settings.ValueToChange)
+                {
+                    case "Linear":
+                        PipeServerConnection.Instance.Channel.EffectLinearDisable(settings.EffectName);
+                        break;
+                    case "Enable":
+                        PipeServerConnection.Instance.Channel.EffectDisable(settings.EffectName);
+                        break;
+                    case "Mute":
+                        PipeServerConnection.Instance.Channel.EffectMuteDisable(settings.EffectName);
+                        break;
+                    default:
+                        Logger.Instance.LogMessage(TracingLevel.ERROR, "Error: ValueToChange not set correctly: " + settings.ValueToChange);
+                        break;
+                }
             }
             catch (EndpointNotFoundException endpointNotFoundException)
             {

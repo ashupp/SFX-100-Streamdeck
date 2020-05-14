@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>sfx_100_streamdeck_plugin Settings</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="sdtools.common.js"></script>
+</head>
+<body>
+<div class="sdpi-wrapper">
+    <details class="message info">
+        <summary>The Controller name MUST exactly match the Controller name in SimFeedback</summary>
+    </details>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Controller Name</div>
+        <input class="sdpi-item-value sdProperty" placeholder="i.e SFX" value="" id="ControllerName" oninput="setSettings()">
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Value to change</div>
+        <select class="sdpi-item-value select sdProperty" id="ValueToChange" oninput="setSettings()">
+            <option value="Intensity">Intensity</option>
+            <option value="Smoothness">Smoothness</option>
+            <option value="Acceleration">Acceleration</option>
+            <option value="MinSpeed">MinSpeed</option>
+            <option value="MaxSpeed">MaxSpeed</option>
+        </select>
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Value (0-100)</div>
+        <input class="sdpi-item-value sdProperty" placeholder="default 50" value="" id="Value" oninput="setSettings()">
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-value">
+            <input id="showValueAfterChange" class="sdProperty sdCheckbox" type="checkbox" value="" oninput="setSettings()">
+            <label for="showValueAfterChange" class="sdpi-item-label"><span></span>Show new value on button after change</label>
+        </div>
+    </div>
+</div>
+</body>
+</html>
