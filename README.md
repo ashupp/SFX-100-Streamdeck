@@ -12,6 +12,7 @@ Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-R
 - It is now possible to change the values of every effect and controller
 - Optionally show the new value on button after changing it
 - Added display-only buttons to display current values  
+
 ![Edit and show Effect values](doc/showNewValue.JPG?raw=true|width=200)
 
 ## 0.0.1.8 New Feature: StartProfile / StartSimFeedback
