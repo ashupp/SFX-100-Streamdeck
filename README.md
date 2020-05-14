@@ -75,6 +75,7 @@ Prepare by downloading the new versions (see above)
 - Backup current profile to chosen backup directory with timestamp (thx @HoiHman)
 - Display current enabled/disabled state on (toggle) buttons (thx @J.R.)
 - Show values on incement/decrement buttons constantly (thx @HoiHman)
+- Change / Activate profile without restart of SimFeedback
 
 ## Third party Libraries
 **This tool makes use of the following great projects:**
