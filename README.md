@@ -8,7 +8,7 @@ Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-R
 ## 0.0.2.6 New Features: Live Tuning and show values
 - It is now possible to change the values of every effect and controller
 - Optionally show the new value on button after changing it
-- Added display-only buttons to display current values
+- Added display-only buttons to display current values  
 ![Edit and show Effect values](doc/showNewValue.JPG?raw=true|width=200)
 
 **See it in action here** (Thx @hoihman for the video!)  
