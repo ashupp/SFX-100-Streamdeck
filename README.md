@@ -1,18 +1,27 @@
 # SFX-100-Streamdeck
 Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-Rig 
 
+**See it in action here** (Thx @hoihman for the video!)  
+[![Video showing usage](http://img.youtube.com/vi/9pzWQWNlzzM/0.jpg)](http://www.youtube.com/watch?v=9pzWQWNlzzM)
+
 ## Please read the installation instructions below BEFORE download 
 
 ![In action](doc/screenshot.JPG?raw=true|width=200)
 
-## New Feature StartProfile / StartSimFeedback
+## 0.0.2.6 New Features: Live Tuning and show values
+- It is now possible to change the values of every effect and controller
+- Optionally show the new value on button after changing it
+- Added display-only buttons to display current values  
+![Edit and show Effect values](doc/showNewValue.JPG?raw=true|width=200)
+
+## 0.0.1.8 New Feature: StartProfile / StartSimFeedback
 It is now possible to start SimFeedback with a desired profile and enable Motion by clicking a single Button.  
 - If SimFeedback is not startet it will start it for you.  
 - If SimFeedback is already running it will be restarted with the (new) desired profile automatically.
 
 :warning: **The selected profile MUST be located in SimFeedback profiles folder** 
 
-![In action](doc/screenshot2.JPG?raw=true|width=200)
+![Start with profile](doc/screenshot2.JPG?raw=true|width=200)
 
 ## Requirements
 
@@ -52,8 +61,12 @@ Prepare by downloading the new versions (see above)
 - "Is telemetry provider connected?" is set to true as soon as any telemetry provider is connected but it will never be false again. Even if the telemetry provider changes or is disconnected. This seems to be a problem of the SimFeedback API.
 
 ## Ideas / Future implementation
-- ~~Change / activate Profile with click on button~~ (Available since 0.0.1.5)
-- Display of current intensity value on button face (thx @Flag Ghost) - not yet possible since data not provided by SimFeedback API (as of Version 00.09.08b)
+
+- ✓ Change / activate Profile with click on button (Available since 0.0.1.5)
+- ✓ Display of current intensity value on button face (thx @Flag Ghost) (Available since 0.0.2.6)
+- Backup current profile to chosen backup directory with timestamp (thx @HoiHman)
+- Display current enabled/disabled state on (toggle) buttons (thx @J.R.)
+- Show values on incement/decrement buttons constantly (thx @HoiHman)
 
 ## Third party Libraries
 **This tool makes use of the following great projects:**
