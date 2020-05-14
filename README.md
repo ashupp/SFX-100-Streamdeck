@@ -34,7 +34,7 @@ https://www.elgato.com/de/gaming/downloads
 https://github.com/SimFeedback/SimFeedback-AC-Servo
 
 
-## Installation
+# Installation
 - Do not click on Download on this page. Download the files from the release tab or use the following links:
   - [latest StreamDeckExtension.zip](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/StreamdeckExtension.zip)
   - [latest StreamDeckPlugin](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
@@ -47,7 +47,7 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 
 ![Expert mode Autostart and Autorun](doc/installInstruction1.JPG?raw=true|width=200)
 
-## Updating
+# Updating
 Prepare by downloading the new versions (see above)
 
 **Update SimFeedback extension**
