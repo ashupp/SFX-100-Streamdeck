@@ -1,6 +1,9 @@
 # SFX-100-Streamdeck
 Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-Rig 
 
+**See it in action here** (Thx @hoihman for the video!)  
+[![Video showing usage](http://img.youtube.com/vi/9pzWQWNlzzM/0.jpg)](http://www.youtube.com/watch?v=9pzWQWNlzzM)
+
 ## Please read the installation instructions below BEFORE download 
 
 ![In action](doc/screenshot.JPG?raw=true|width=200)
@@ -10,10 +13,6 @@ Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-R
 - Optionally show the new value on button after changing it
 - Added display-only buttons to display current values  
 ![Edit and show Effect values](doc/showNewValue.JPG?raw=true|width=200)
-
-**See it in action here** (Thx @hoihman for the video!)  
-[![Video showing usage](http://img.youtube.com/vi/9pzWQWNlzzM/0.jpg)](http://www.youtube.com/watch?v=9pzWQWNlzzM)
-
 
 ## 0.0.1.8 New Feature: StartProfile / StartSimFeedback
 It is now possible to start SimFeedback with a desired profile and enable Motion by clicking a single Button.  
