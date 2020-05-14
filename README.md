@@ -39,9 +39,13 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
   - [latest StreamDeckExtension.zip](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/StreamdeckExtension.zip)
   - [latest StreamDeckPlugin](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
 - Unzip the extension into the SimFeedback extension dir.
+- Start SimFeedback and enable Expert mode if not enabled.
 - Enable the plugin and enable autorun of the extension in SimFeedback
 - Install the Streamdeck extension by double-click
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
+- You probably have to restart Stream Deck after configuring the buttons.  
+
+![Start with profile](doc/installInstruction1.JPG?raw=true|width=200)
 
 ## Updating
 Prepare by downloading the new versions (see above)
@@ -61,6 +65,8 @@ Prepare by downloading the new versions (see above)
 
 ## Known issues
 - "Is telemetry provider connected?" is set to true as soon as any telemetry provider is connected but it will never be false again. Even if the telemetry provider changes or is disconnected. This seems to be a problem of the SimFeedback API.
+- Works only correct if Expert mode of SimFeedback is enabled
+- Does not work when SimFeedback is started minimized
 
 ## Ideas / Future implementation
 
