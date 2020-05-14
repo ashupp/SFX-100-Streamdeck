@@ -45,7 +45,7 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
 - You probably have to restart Stream Deck after configuring the buttons.  
 
-![Start with profile](doc/installInstruction1.JPG?raw=true|width=200)
+![Expert mode Autostart and Autorun](doc/installInstruction1.JPG?raw=true|width=200)
 
 ## Updating
 Prepare by downloading the new versions (see above)
