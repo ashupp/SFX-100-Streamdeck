@@ -1,7 +1,7 @@
 # SFX-100-Streamdeck
 
 Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-Rig 
-## Please read the installation instructions below BEFORE download 
+## Please read the [installation instructions](#installation) below BEFORE download 
 **See it in action here** (Thx @hoihman for the video!)  
 [![Video showing usage](http://img.youtube.com/vi/9pzWQWNlzzM/0.jpg)](http://www.youtube.com/watch?v=9pzWQWNlzzM)
 
