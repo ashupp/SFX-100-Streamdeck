@@ -35,6 +35,15 @@ namespace sfx_100_streamdeck_sfb_extension
         private const UInt32 WM_GETTEXT = 0x000D;
         public AutomationElement profilePanel;
 
+        private enum ShowWindowEnum
+        {
+            Hide = 0,
+            ShowNormal = 1, ShowMinimized = 2, ShowMaximized = 3,
+            Maximize = 3, ShowNormalNoActivate = 4, Show = 5,
+            Minimize = 6, ShowMinNoActivate = 7, ShowNoActivate = 8,
+            Restore = 9, ShowDefault = 10, ForceMinimized = 11
+        };
+
         private Process _currProcess;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
@@ -43,6 +52,16 @@ namespace sfx_100_streamdeck_sfb_extension
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
 
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsIconic(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
 
         [DllImport("user32.dll")]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -105,7 +124,6 @@ namespace sfx_100_streamdeck_sfb_extension
                 GuiLoggerProvider.Instance.Log("Loading Elements for UI Automation");
 
                 //var mainWindowHandle = GetHandleWindow("SimFeedback - 00.09.08");
-                _currProcess = Process.GetCurrentProcess();
                 var mainWindowHandle = _currProcess.MainWindowHandle;
 
                 GuiLoggerProvider.Instance.Log("Aktuelles Window handle: " + mainWindowHandle);
@@ -503,10 +521,32 @@ namespace sfx_100_streamdeck_sfb_extension
         {
             await Task.Delay(Settings.Default.UIAutomationDelay);
             GuiLoggerProvider.Instance.Log("Load UIAutomation with delay..." + Settings.Default.UIAutomationDelay);
-            await SimFeedbackFacadeProvider.Instance.DispatcherHelper.BeginInvoke((Action)(() =>
+            await SimFeedbackFacadeProvider.Instance.DispatcherHelper.BeginInvoke((Action)(async () =>
             {
+                // Check if SimFeedback is minimized
+                _currProcess = Process.GetCurrentProcess();
+                var mainWindowHandle = _currProcess.MainWindowHandle;
+
+                var wasMinimized = false;
+                if (IsIconic(mainWindowHandle))
+                {
+                    wasMinimized = true;
+                    ShowWindow(mainWindowHandle, ShowWindowEnum.Restore);
+                    SetForegroundWindow(mainWindowHandle);
+                    await Task.Delay(1000);
+                }
+
+
+
                 SimFeedbackInvoker.Instance.SelectProfileTab();
                 Instance.LoadElements();
+
+                if (wasMinimized)
+                {
+                    await Task.Delay(4000);
+                    ShowWindow(mainWindowHandle, ShowWindowEnum.Minimize);
+                }
+
             }));
         }
     }
