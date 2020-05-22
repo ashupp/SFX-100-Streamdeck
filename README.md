@@ -1,7 +1,7 @@
 # SFX-100-Streamdeck
 
 Simfeedback extension and Streamdeck plugin to Start/Stop and control your Sim-Rig 
-## Please read the installation instructions below BEFORE download 
+## Please read the [installation instructions](#installation) below BEFORE download 
 **See it in action here** (Thx @hoihman for the video!)  
 [![Video showing usage](http://img.youtube.com/vi/9pzWQWNlzzM/0.jpg)](http://www.youtube.com/watch?v=9pzWQWNlzzM)
 
@@ -34,16 +34,20 @@ https://www.elgato.com/de/gaming/downloads
 https://github.com/SimFeedback/SimFeedback-AC-Servo
 
 
-## Installation
+# Installation
 - Do not click on Download on this page. Download the files from the release tab or use the following links:
   - [latest StreamDeckExtension.zip](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/StreamdeckExtension.zip)
   - [latest StreamDeckPlugin](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
 - Unzip the extension into the SimFeedback extension dir.
+- Start SimFeedback and enable Expert mode if not enabled.
 - Enable the plugin and enable autorun of the extension in SimFeedback
 - Install the Streamdeck extension by double-click
 - If it does not work close Simfeedback, run remove_blocking.bat in Simfeedback folder with admin privileges and restart
+- You probably have to restart Stream Deck after configuring the buttons.  
 
-## Updating
+![Expert mode Autostart and Autorun](doc/installInstruction1.JPG?raw=true|width=200)
+
+# Updating
 Prepare by downloading the new versions (see above)
 
 **Update SimFeedback extension**
@@ -61,6 +65,8 @@ Prepare by downloading the new versions (see above)
 
 ## Known issues
 - "Is telemetry provider connected?" is set to true as soon as any telemetry provider is connected but it will never be false again. Even if the telemetry provider changes or is disconnected. This seems to be a problem of the SimFeedback API.
+- Works only correct if Expert mode of SimFeedback is enabled
+- Does not work when SimFeedback is started minimized
 
 ## Ideas / Future implementation
 
@@ -69,6 +75,7 @@ Prepare by downloading the new versions (see above)
 - Backup current profile to chosen backup directory with timestamp (thx @HoiHman)
 - Display current enabled/disabled state on (toggle) buttons (thx @J.R.)
 - Show values on incement/decrement buttons constantly (thx @HoiHman)
+- Change / Activate profile without restart of SimFeedback
 
 ## Third party Libraries
 **This tool makes use of the following great projects:**
