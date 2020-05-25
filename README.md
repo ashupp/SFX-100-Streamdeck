@@ -49,7 +49,7 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 ![Expert mode Autostart and Autorun](doc/installInstruction1.JPG?raw=true|width=200)
 
 # Updating
-Prepare by downloading the new versions (see above)
+Prepare by downloading the new versions (see above)  
 When updating, you have to update **Always** both components!
 
 **Update SimFeedback extension**
