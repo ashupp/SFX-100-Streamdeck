@@ -50,6 +50,7 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 
 # Updating
 Prepare by downloading the new versions (see above)
+When updating, you have to update **Always** both components!
 
 **Update SimFeedback extension**
 - Close SimFeedback if it is running
