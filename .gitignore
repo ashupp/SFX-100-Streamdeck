@@ -16,3 +16,7 @@ sfx-100-streamdeck-pipecontract/obj/
 sfx-100-streamdeck-pipecontract/bin/
 
 *.user
+
+sfx-100-streamdeck-console/bin/
+
+sfx-100-streamdeck-console/obj/
