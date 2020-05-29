@@ -35,7 +35,8 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 
 
 # Installation
-- Do not click on Download on this page. Download the files from the release tab or use the following links:
+- Do not click on Download on this page. Download the files from the release tab or use the following links:  
+(Please note you get the latest stable versions through these links. Pre-Release/Beta versions must be loaded from release tab.)
   - [latest StreamDeckExtension.zip](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/StreamdeckExtension.zip)
   - [latest StreamDeckPlugin](https://github.com/ashupp/SFX-100-Streamdeck/releases/latest/download/sfx-100-streamdeck-plugin.streamDeckPlugin)
 - Unzip the extension into the SimFeedback extension dir.
@@ -48,7 +49,8 @@ https://github.com/SimFeedback/SimFeedback-AC-Servo
 ![Expert mode Autostart and Autorun](doc/installInstruction1.JPG?raw=true|width=200)
 
 # Updating
-Prepare by downloading the new versions (see above)
+Prepare by downloading the new versions (see above)  
+When updating, you have to update **Always** both components!
 
 **Update SimFeedback extension**
 - Close SimFeedback if it is running
