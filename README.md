@@ -77,6 +77,7 @@ When updating, you have to update **Always** both components!
 - Backup current profile to chosen backup directory with timestamp (thx @HoiHman)
 - Display current enabled/disabled state on (toggle) buttons (thx @J.R.)
 - Show values on incement/decrement buttons constantly (thx @HoiHman)
+- Show Controller / Effect Values constantly and allow button text and/or background image (thx @HoiHman)
 - Change / Activate profile without restart of SimFeedback
 
 ## Third party Libraries
