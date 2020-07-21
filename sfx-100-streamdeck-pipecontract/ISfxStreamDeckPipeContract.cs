@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace sfx_100_streamdeck_pipecontract
 {
@@ -7,6 +8,12 @@ namespace sfx_100_streamdeck_pipecontract
     {
         [OperationContract]
         bool CheckConnection();
+
+        [OperationContract]
+        List<string> GetControllerNames();
+
+        [OperationContract]
+        List<string> GetEffectNames();
 
         [OperationContract]
         bool IsRunning();

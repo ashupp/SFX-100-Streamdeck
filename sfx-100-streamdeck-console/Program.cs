@@ -60,7 +60,7 @@ namespace sfx_100_streamdeck_console
                         Console.WriteLine("Command line arguments: " + (args.Length - 1));
                         Console.WriteLine("Method arguments: " + miParams.Length);
 
-                        if (miParams.Length > 0 && (args.Length -1) == miParams.Length)
+                        if (miParams.Length > 0 || (args.Length -1) == miParams.Length)
                         {
                             // Prüfen ob die Anzahl der Parameter mit der Anzahl der Argumente übereinstimmt
                             if (args.Length - 1 == miParams.Length)
@@ -87,6 +87,23 @@ namespace sfx_100_streamdeck_console
                         try
                         {
                             result = mi.Invoke(PipeServerConnection.Instance.Channel, paramElems.ToArray());
+                            if (result != null && result.GetType() == typeof(List<string>))
+                            {
+                                Console.WriteLine("Got List - Exitcode will be list length.");
+                                var newList = result as List<string>;
+                                if (newList != null)
+                                {
+                                    foreach (var listElem in newList)
+                                    {
+                                        Console.WriteLine(listElem);
+                                    }
+                                    Environment.Exit(newList.Count);
+                                }
+                                else
+                                {
+                                    Environment.Exit(Int32.MinValue);
+                                }
+                            }
                             Console.WriteLine("Result: " + result);
                         }
                         catch (Exception e)

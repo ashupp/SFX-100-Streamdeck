@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using sfx_100_streamdeck_pipecontract;
-using WpfApp2;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -13,6 +13,20 @@ namespace sfx_100_streamdeck_sfb_extension
             GuiLoggerProvider.Instance.Log("Incoming Command: CheckConnection");
             return true;
         }
+
+        #region Get Controller Names and Effect Names
+        public List<string> GetControllerNames()
+        {
+            GuiLoggerProvider.Instance.Log("Incoming Command: GetControllerNames");
+            return SimFeedbackInvoker.Instance.actionElements.ControllerIndexAssignment ?? new List<string>();
+        }
+        
+        public List<string> GetEffectNames()
+        {
+            GuiLoggerProvider.Instance.Log("Incoming Command: GetEffectNames");
+            return SimFeedbackInvoker.Instance.actionElements.EffectIndexAssignment ?? new List<string>();
+        }
+        #endregion
 
         #region Running / TelemetryProvider States
         public bool IsRunning()
@@ -26,7 +40,6 @@ namespace sfx_100_streamdeck_sfb_extension
 
         public bool IsTelemetryProviderConnected()
         {
-
             GuiLoggerProvider.Instance.Log("Incoming Command: IsTelemetryProviderConnected");
             var isTelemetryProviderConnected = SimFeedbackFacadeProvider.Instance.SimFeedbackFacade.IsTelemetryProviderConnected();
             GuiLoggerProvider.Instance.Log("Returning: " + isTelemetryProviderConnected);

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Automation;
 
-namespace WpfApp2
+namespace sfx_100_streamdeck_sfb_extension
 {
     class ActionElements
     {
@@ -42,8 +38,4 @@ namespace WpfApp2
         public AutomationElement MinSpeed;
         public AutomationElement MaxSpeed;
     }
-
-
-
-
 }

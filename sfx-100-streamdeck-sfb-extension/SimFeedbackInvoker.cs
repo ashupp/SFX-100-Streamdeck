@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Automation;
 using System.Xml.Linq;
 using sfx_100_streamdeck_sfb_extension.Properties;
-using WpfApp2;
 
 namespace sfx_100_streamdeck_sfb_extension
 {
@@ -276,7 +275,7 @@ namespace sfx_100_streamdeck_sfb_extension
 
                             //SimFeedbackInvoker.Instance.actionElements.Effects.Add( effectName, null);
                             SimFeedbackInvoker.Instance.actionElements.EffectIndexAssignment.Add(effectName);
-                            
+
                         }
                     }
                 }
