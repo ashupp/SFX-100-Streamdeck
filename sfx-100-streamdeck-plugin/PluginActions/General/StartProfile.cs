@@ -172,7 +172,13 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                 var windowStyle = (ProcessWindowStyle) Enum.Parse(typeof(ProcessWindowStyle), settings.SfbWindowStyle);
                 psi.WindowStyle = windowStyle;
             }
-            
+            psi.Arguments = "-p " + Path.GetDirectoryName(settings.ProfileToLoad);
+
+            psi.Arguments = "-p profiles.smp";
+
+            psi.Arguments  = "-p " +  new DirectoryInfo(settings.ProfileToLoad).Parent.Name;
+
+            Logger.Instance.LogMessage(TracingLevel.DEBUG, "Arguments " + psi.Arguments);
             psi.WorkingDirectory = Path.GetDirectoryName(settings.SfbExe);
             var newProc = Process.Start(psi);
             newProc.WaitForInputIdle();
