@@ -173,6 +173,7 @@ namespace sfx_100_streamdeck_plugin.PluginActions
                 psi.WindowStyle = windowStyle;
             }
             
+            psi.Arguments  = "-p " +  new DirectoryInfo(settings.ProfileToLoad).Parent.Name;
             psi.WorkingDirectory = Path.GetDirectoryName(settings.SfbExe);
             var newProc = Process.Start(psi);
             newProc.WaitForInputIdle();
