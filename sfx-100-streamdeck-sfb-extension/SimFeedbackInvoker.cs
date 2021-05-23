@@ -239,6 +239,20 @@ namespace sfx_100_streamdeck_sfb_extension
 
             string path = Directory.GetCurrentDirectory();
             var profileDir = Path.Combine(path,"profiles");
+            // If a user profile path (e.g. "-p profiles.user") is given, reassign profileDir to the correct path
+            string[] arguments = Environment.GetCommandLineArgs();
+
+            bool found = false;
+            foreach (var s in arguments)
+            {
+                if (found) // Next argument should be the userpath 
+                { 
+                    profileDir = Path.Combine(path,s); 
+                    found = false; 
+                }
+                if (s == "-p") found = true;
+            }
+            GuiLoggerProvider.Instance.Log("profileDir: " + profileDir);
 
             var profileFiles = Directory.GetFiles(profileDir, "*.xml", SearchOption.AllDirectories);
 
